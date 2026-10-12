@@ -381,7 +381,7 @@ Development contributions should include a description of the problem, the propo
 
 **Licence:** Not selected yet. The repository owner should add an appropriate `LICENSE` file before granting public reuse rights. Publishing a repository does not by itself grant an open-source licence.
 
-<-- ##  Technical references
+<!-- ##  Technical references
 
 - [Spring Framework: Task Execution and Scheduling](https://docs.spring.io/spring-framework/reference/integration/scheduling.html)
 - [Spring Boot: Task Execution and Scheduling](https://docs.spring.io/spring-boot/reference/features/task-execution-and-scheduling.html)
