@@ -381,10 +381,10 @@ Development contributions should include a description of the problem, the propo
 
 **Licence:** Not selected yet. The repository owner should add an appropriate `LICENSE` file before granting public reuse rights. Publishing a repository does not by itself grant an open-source licence.
 
-##  Technical references
+<-- ##  Technical references
 
 - [Spring Framework: Task Execution and Scheduling](https://docs.spring.io/spring-framework/reference/integration/scheduling.html)
 - [Spring Boot: Task Execution and Scheduling](https://docs.spring.io/spring-boot/reference/features/task-execution-and-scheduling.html)
 - [MDN: Browser Microphone Access with getUserMedia](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia)
 
-Official service sources will be added to each guide during service-specific research and review. Technical references do not establish government integration availability.
+Official service sources will be added to each guide during service-specific research and review. Technical references do not establish government integration availability. -->
