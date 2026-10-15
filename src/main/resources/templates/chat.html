@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="bn" th:lang="${english} ? 'en' : 'bn'" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Chat with assistant', 'সহকারীর সঙ্গে চ্যাট')}"></head>
+<body>
+<header th:replace="~{fragments :: siteHeader}"></header>
+<main id="main" class="chat-page">
+  <div class="container chat-shell">
+    <aside class="chat-sidebar" aria-label="চ্যাটের পাশের তথ্য" th:attr="aria-label=${english} ? 'Chat information' : 'চ্যাটের পাশের তথ্য'">
+      <span class="section-kicker"><span lang="en">SHOHOJ ASSISTANT</span><span th:unless="${english}"> / সহজ সহকারী</span></span>
+      <h1><span th:text="${english} ? 'Ask a question.' : 'প্রশ্ন করুন।'">প্রশ্ন করুন।</span><br><span th:text="${english} ? 'Find your next step.' : 'পরের পথ দেখুন।'">পরের পথ দেখুন।</span></h1>
+      <p th:text="${english} ? 'Ask about a service in Bangla or English. The assistant looks for matches in this site’s limited service guide.' : 'বাংলা বা ইংরেজিতে সেবার বিষয়ে লিখুন। সহকারী এই সাইটের সীমিত সেবার তালিকা থেকে মিল খুঁজে দেখাবে।'">বাংলা বা ইংরেজিতে সেবার বিষয়ে লিখুন। সহকারী এই সাইটের সীমিত সেবার তালিকা থেকে মিল খুঁজে দেখাবে।</p>
+      <div class="chat-side-links">
+        <a th:href="@{/services}"><span aria-hidden="true">▦</span> <span th:text="${english} ? 'Browse services' : 'সব সেবা দেখুন'">সব সেবা দেখুন</span> <span aria-hidden="true">↗</span></a>
+        <a th:href="@{/helplines}"><span aria-hidden="true">☎</span> <span th:text="${english} ? 'Emergency numbers' : 'জরুরি নম্বর'">জরুরি নম্বর</span> <span aria-hidden="true">↗</span></a>
+        <a th:if="${authenticated}" th:href="@{/my/drafts}"><span aria-hidden="true">▤</span> <span th:text="${english} ? 'My drafts' : 'আমার খসড়া'">আমার খসড়া</span> <span aria-hidden="true">↗</span></a>
+        <a th:unless="${authenticated}" th:href="@{/register}"><span aria-hidden="true">▤</span> <span th:text="${english} ? 'Create an account to save drafts' : 'খসড়া রাখতে অ্যাকাউন্ট খুলুন'">খসড়া রাখতে অ্যাকাউন্ট খুলুন</span> <span aria-hidden="true">↗</span></a>
+      </div>
+      <p class="chat-privacy" th:text="${english} ? 'Guest chats are not saved in the database. Do not enter identity numbers or document details.' : 'অতিথির চ্যাট ডাটাবেসে রাখা হয় না। পরিচয় নম্বর বা নথির তথ্য লিখবেন না।'">অতিথির চ্যাট ডাটাবেসে রাখা হয় না। পরিচয় নম্বর বা নথির তথ্য লিখবেন না।</p>
+    </aside>
+
+    <section class="chat-panel" aria-labelledby="chat-heading">
+      <div class="chat-panel-header">
+        <div class="chat-avatar" aria-hidden="true">স</div>
+        <div><h2 id="chat-heading" th:text="${english} ? 'Shohoj Assistant' : 'সহজ সহকারী'">সহজ সহকারী</h2><p th:text="${english} ? 'Help finding a service guide' : 'সেবার নির্দেশিকা খুঁজে পেতে সাহায্য'">সেবার নির্দেশিকা খুঁজে পেতে সাহায্য</p></div>
+        <span class="chat-status" th:text="${english} ? 'Information support' : 'তথ্য সহায়তা'">তথ্য সহায়তা</span>
+      </div>
+
+      <div class="chat-messages" aria-live="polite">
+        <div class="chat-message assistant-message">
+          <span class="chat-bubble-label" th:text="${english} ? 'Assistant' : 'সহকারী'">সহকারী</span>
+          <p th:text="${english} ? 'Welcome. What service do you need? For example, ask about birth registration or land services.' : 'স্বাগতম। কী সেবা দরকার? যেমন “জন্ম নিবন্ধন করতে চাই” বা “জমির নামজারি সম্পর্কে জানতে চাই” লিখুন।'">স্বাগতম। কী সেবা দরকার? যেমন “জন্ম নিবন্ধন করতে চাই” বা “জমির নামজারি সম্পর্কে জানতে চাই” লিখুন।</p>
+        </div>
+        <th:block th:each="turn : ${turns}">
+          <div class="chat-message user-message">
+            <span class="chat-bubble-label" th:text="${english} ? 'You' : 'আপনি'">আপনি</span>
+            <p th:text="${turn.question}">আমার প্রশ্ন</p>
+          </div>
+          <div class="chat-message assistant-message">
+            <span class="chat-bubble-label" th:text="${english} ? 'Assistant' : 'সহকারী'">সহকারী</span>
+            <p th:text="${english ? turn.answer.replyEn : turn.answer.replyBn}">সহকারীর উত্তর</p>
+            <div class="chat-recommendations" th:if="${turn.answer.suggestions != null and !turn.answer.suggestions.isEmpty()}">
+              <strong th:text="${english} ? 'Matching services' : 'মিল থাকা সেবা'">মিল থাকা সেবা</strong>
+              <ul>
+                <li th:each="suggestion : ${turn.answer.suggestions}">
+                  <a th:href="@{/services/{code}(code=${suggestion.code})}" th:text="${english ? suggestion.titleEn : suggestion.titleBn}">নির্দেশিকা দেখুন</a>
+                </li>
+              </ul>
+            </div>
+            <a class="chat-help-link" th:href="@{/helplines}"><span th:text="${english} ? 'View helplines' : 'হেল্পলাইন দেখুন'">হেল্পলাইন দেখুন</span> <span aria-hidden="true">↗</span></a>
+          </div>
+        </th:block>
+      </div>
+
+      <form class="chat-compose" method="post" th:action="@{/chat}">
+        <input th:if="${_csrf != null}" type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+        <input th:each="turn : ${turns}" type="hidden" name="previous" th:value="${turn.question}">
+        <label for="chat-question" th:text="${english} ? 'Write your question' : 'আপনার প্রশ্ন লিখুন'">আপনার প্রশ্ন লিখুন</label>
+        <textarea id="chat-question" name="text" rows="3" maxlength="500" required placeholder="সেবা সম্পর্কে নিজের ভাষায় লিখুন" th:placeholder="${english} ? 'Describe what you need in your own words' : 'সেবা সম্পর্কে নিজের ভাষায় লিখুন'" aria-describedby="chat-help" th:text="${formError != null ? question : ''}"></textarea>
+        <div class="chat-compose-bottom">
+          <p id="chat-help" th:text="${english} ? 'Up to 500 characters. This page shows your last five questions; they disappear when you leave.' : 'সর্বোচ্চ ৫০০ অক্ষর। এই পাতায় শেষ পাঁচটি প্রশ্ন দেখায়; পুনরায় খুললে মুছে যায়।'">সর্বোচ্চ ৫০০ অক্ষর। এই পাতায় শেষ পাঁচটি প্রশ্ন দেখায়; পুনরায় খুললে মুছে যায়।</p>
+          <button class="button button-primary" type="submit"><span th:text="${english} ? 'Send' : 'পাঠান'">পাঠান</span> <span aria-hidden="true">→</span></button>
+        </div>
+        <p class="form-error" role="alert" th:if="${formError}" th:text="${formError}"></p>
+      </form>
+      <p class="chat-disclaimer" th:text="${english} ? 'This is limited sample guidance. Check current rules, fees, and required documents with the relevant official source.' : 'এটি সীমিত নমুনা নির্দেশনা। বর্তমান নিয়ম, ফি এবং কাগজপত্র সংশ্লিষ্ট সরকারি উৎসে যাচাই করুন।'">এটি সীমিত নমুনা নির্দেশনা। বর্তমান নিয়ম, ফি এবং কাগজপত্র সংশ্লিষ্ট সরকারি উৎসে যাচাই করুন।</p>
+    </section>
+  </div>
+</main>
+<footer th:replace="~{fragments :: siteFooter}"></footer>
+</body>
+</html>

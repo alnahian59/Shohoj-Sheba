@@ -9,7 +9,7 @@ User (browser / JSON client)
       |
       +-- Web pages (web/PageController -> Thymeleaf)
       |
-      +-- API routes (api/*Controller)
+      +-- API routes (api/ApiController)
                    |
              DTO validation
                    |
@@ -28,7 +28,7 @@ User (browser / JSON client)
                    ^
               Flyway SQL
 
-integration/OfficialSubmissionPort is intentionally DISABLED.
+No official submission connector or route exists in this MVP.
 ```
 
 ## Core now (every file has a purpose)
@@ -37,38 +37,39 @@ integration/OfficialSubmissionPort is intentionally DISABLED.
 | --- | --- |
 | `pom.xml` | Maven + pinned Spring Boot version and dependencies |
 | `ShohojShebaApplication.java` | Start the application |
-| `config/SecurityConfig.java` | Access policy, CSP, form CSRF |
+| `config/SecurityConfig.java` | Public route access, CSP, form and API CSRF |
 | `catalog/ServiceDefinition.java` | Database entity representing service guidance |
 | `catalog/ServiceDefinitionRepository.java` | Query enabled guidance entries |
-| `catalog/ServiceCatalog.java` | Reusable service lookup logic |
+| `catalog/CatalogService.java` | Reusable service lookup logic |
 | `request/AssistanceRequest.java` | Local draft entity and request state |
 | `request/AssistanceRequestRepository.java` | Draft persistence |
-| `request/AssistanceRequestService.java` | Generate and verify tracking token, create and retrieve drafts |
+| `request/AssistanceRequestService.java` | Generate and verify tracking code, create, retrieve and version-check draft edits |
 | `request/RequestState.java` | Local draft state enum only |
-| `intent/IntentMatcher.java` | Interface for future intent providers |
-| `intent/KeywordIntentMatcher.java` | Demonstration matching typed text to service groups |
+| `intent/IntentResolver.java` | Interface for future intent providers |
+| `intent/KeywordIntentResolver.java` | Demonstration matching typed text to service groups |
 | `dto/*.java` | External input/output shapes and input constraints |
-| `api/*.java` | JSON endpoints (controllers do not implement persistence) |
+| `api/ApiController.java` and `api/ApiExceptionHandler.java` | JSON endpoints and safe API errors |
 | `web/PageController.java` | HTML routes, form validation and presentation |
-| `integration/*.java` | Future authorised external-system boundary (blocked by default) |
-| `application*.yml` | Runtime configuration |
-| `db/migration/*.sql` | Repeatable versioned database initialization |
+| `application*.yml` | H2 demo, PostgreSQL and HTTPS profile configuration |
+| `db/migration/*.sql` | Versioned Flyway schema migration and illustrative service seed data |
 | `templates/*.html` | Server-rendered interface |
 | `static/css/style.css` | Responsive styles |
-| `static/js/intent.js` | Optional progressive-enhancement client for text intent |
+| `static/js/site.js` | Progressive enhancement for browser interactions |
 | `src/test/**` | Tests |
+| `docs/database.md` | Local run and PostgreSQL connection instructions |
 
 ## Data model
 
 **service_definitions**: code (PK), title_bn, title_en, description_bn, checklist_bn, enabled.
 
-**assistance_requests**: reference (UUID text, PK), service_code (FK), question (optional, up to 500 chars), state, tracking_hash (SHA-256 hex, NOT original code), created_at.
+**assistance_requests**: reference (UUID text, PK), service_code (FK), question (optional, up to 500 chars), state, tracking_hash (SHA-256 hex, not the original code), created_at, version (optimistic locking).
 
-**Local request lifecycle (MVP)**: `DRAFT` only. Enum also defines future `NEEDS_INFORMATION` and `READY_FOR_OFFICIAL_PORTAL`; the MVP does not implement transitions. None of these represent official processing states.
+**Local request lifecycle (MVP)**: `DRAFT` only. The MVP does not implement state transitions. This is never an official processing state.
 
 ## Boundaries and limitations
 
 - No government API or web automation is used.
+- Draft creation and editing only change local database rows. There is no official submission action.
 - Do not misrepresent demonstration service text as official requirements.
 - No identity fields or file upload routes are provided.
 - No users, roles, staff/admin dashboard or ownership accounts are implemented.

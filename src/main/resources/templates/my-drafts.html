@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="bn" th:lang="${english} ? 'en' : 'bn'" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('My drafts', 'আমার খসড়া')}"></head>
+<body>
+<header th:replace="~{fragments :: siteHeader}"></header>
+<main id="main" class="page-main">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="অবস্থান" th:attr="aria-label=${english} ? 'Breadcrumb' : 'অবস্থান'"><a th:href="@{/services}" th:text="${english} ? 'Services' : 'সেবাসমূহ'">সেবাসমূহ</a><span aria-hidden="true">/</span><span th:text="${english} ? 'My drafts' : 'আমার খসড়া'">আমার খসড়া</span></nav>
+    <div class="page-heading dashboard-heading">
+      <div>
+        <span class="section-kicker"><span lang="en">YOUR SPACE</span><span th:unless="${english}"> / নিজের কাজ</span></span>
+        <h1 th:text="${english} ? 'My drafts' : 'আমার খসড়া'">আমার খসড়া</h1>
+        <p th:if="${english}">Welcome, <strong th:text="${currentUserName}">you</strong>. You can view and edit local drafts saved to your account here.</p>
+        <p th:unless="${english}">স্বাগতম, <strong th:text="${currentUserName}">আপনি</strong>। আপনার অ্যাকাউন্টে রাখা স্থানীয় খসড়া এখানে দেখতে ও বদলাতে পারবেন।</p>
+      </div>
+      <a class="button button-primary" th:href="@{/services#services}"><span th:text="${english} ? 'Explore a service' : 'নতুন সেবা দেখুন'">নতুন সেবা দেখুন</span> <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="dashboard-notice">
+      <span aria-hidden="true">i</span>
+      <p th:text="${english} ? 'These drafts are stored only in Shohoj Sheba. None have been submitted or sent to a government office.' : 'এগুলো শুধু সহজ সেবায় রাখা খসড়া। কোনো সরকারি দপ্তরে জমা বা পাঠানো হয়নি।'">এগুলো শুধু সহজ সেবায় রাখা খসড়া। কোনো সরকারি দপ্তরে জমা বা পাঠানো হয়নি।</p>
+    </div>
+    <section class="drafts-section" aria-labelledby="drafts-heading">
+      <div class="drafts-section-head">
+        <h2 id="drafts-heading" th:text="${english} ? 'Saved drafts' : 'সংরক্ষিত খসড়া'">সংরক্ষিত খসড়া</h2>
+        <span th:if="${drafts != null}" th:text="${english ? #lists.size(drafts) + (#lists.size(drafts) == 1 ? ' draft' : ' drafts') : #lists.size(drafts) + 'টি'}">০টি</span>
+      </div>
+      <div class="drafts-grid" th:if="${drafts != null and !#lists.isEmpty(drafts)}">
+        <article class="panel draft-card" th:each="draft : ${drafts}">
+          <span class="draft-card-label" th:text="${english} ? 'Local draft' : 'স্থানীয় খসড়া'">স্থানীয় খসড়া</span>
+          <h3 th:text="${serviceTitles[draft.serviceCode] ?: draft.serviceCode}">সেবার নাম</h3>
+          <p class="draft-card-question" th:if="${draft.question != null and !draft.question.isBlank()}" th:text="${draft.question}">আপনার প্রশ্ন</p>
+          <p class="draft-card-question" th:unless="${draft.question != null and !draft.question.isBlank()}" th:text="${english} ? 'No question has been written yet.' : 'এখনও কোনো প্রশ্ন লেখা হয়নি।'">এখনও কোনো প্রশ্ন লেখা হয়নি।</p>
+          <div class="draft-card-foot">
+            <small class="break-anywhere"><span th:text="${english} ? 'Reference:' : 'রেফারেন্স:'">রেফারেন্স:</span> <span th:text="${draft.reference}">—</span></small>
+            <a th:href="@{/drafts/{reference}(reference=${draft.reference})}"><span th:text="${english} ? 'Open' : 'খুলুন'">খুলুন</span> <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+      </div>
+      <div class="panel drafts-empty" th:if="${drafts == null or #lists.isEmpty(drafts)}">
+        <span class="drafts-empty-mark" aria-hidden="true">✳</span>
+        <h3 th:text="${english} ? 'No drafts yet' : 'এখনও কোনো খসড়া নেই'">এখনও কোনো খসড়া নেই</h3>
+        <p th:text="${english} ? 'Open a service guide to save a question of your own.' : 'একটি সেবার নির্দেশনা খুলে নিজের প্রশ্ন লিখে রাখতে পারেন।'">একটি সেবার নির্দেশনা খুলে নিজের প্রশ্ন লিখে রাখতে পারেন।</p>
+        <a class="button button-primary" th:href="@{/services#services}"><span th:text="${english} ? 'Browse services' : 'সেবা দেখুন'">সেবা দেখুন</span> <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+    <div class="legacy-claim">
+      <h2 th:text="${english} ? 'Have an older draft?' : 'আগের কোনো খসড়া আছে?'">আগের কোনো খসড়া আছে?</h2>
+      <p th:text="${english} ? 'If you have a reference and private code for a draft created before accounts were available, you can add it to your account.' : 'অ্যাকাউন্ট খোলার আগে তৈরি খসড়ার রেফারেন্স ও ব্যক্তিগত কোড থাকলে সেটি আপনার অ্যাকাউন্টে যোগ করতে পারেন।'">অ্যাকাউন্ট খোলার আগে তৈরি খসড়ার রেফারেন্স ও ব্যক্তিগত কোড থাকলে সেটি আপনার অ্যাকাউন্টে যোগ করতে পারেন।</p>
+      <a class="text-link" th:href="@{/resume}"><span th:text="${english} ? 'Add an older draft' : 'পুরোনো খসড়া যোগ করুন'">পুরোনো খসড়া যোগ করুন</span> <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</main>
+<footer th:replace="~{fragments :: siteFooter}"></footer>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="bn" th:lang="${english} ? 'en' : 'bn'" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Page not found', 'পাতা পাওয়া যায়নি')}"></head>
+<body>
+<header th:replace="~{fragments :: siteHeader}"></header>
+<main id="main" class="page-main">
+  <div class="container form-layout error-layout">
+    <span class="error-number" aria-hidden="true">404</span>
+    <h1 th:text="${errorTitle}">পাতা পাওয়া যায়নি</h1>
+    <p th:text="${errorMessage}">প্রথম পাতা থেকে আবার শুরু করুন।</p>
+    <a class="button button-primary" th:href="@{/services}"><span th:text="${english} ? 'Go to services' : 'সেবাসমূহে যান'">সেবাসমূহে যান</span> <span aria-hidden="true">→</span></a>
+  </div>
+</main>
+<footer th:replace="~{fragments :: siteFooter}"></footer>
+</body>
+</html>

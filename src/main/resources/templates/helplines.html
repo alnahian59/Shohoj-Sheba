@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="bn" th:lang="${english ? 'en' : 'bn'}" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Helplines', 'হেল্পলাইন')}"></head>
+<body>
+<header th:replace="~{fragments :: siteHeader}"></header>
+<main id="main" class="page-main">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="অবস্থান" th:attr="aria-label=${english ? 'Breadcrumb' : 'অবস্থান'}"><a th:href="@{/services}" th:text="${english ? 'Services' : 'সেবাসমূহ'}">সেবাসমূহ</a><span aria-hidden="true">/</span><span th:text="${english ? 'Helplines' : 'হেল্পলাইন'}">হেল্পলাইন</span></nav>
+    <div class="page-heading">
+      <span class="section-kicker" th:text="${english ? 'EMERGENCY & PUBLIC CONTACTS' : 'EMERGENCY & PUBLIC CONTACTS / জরুরি ও সরকারি যোগাযোগ'}">EMERGENCY & PUBLIC CONTACTS / জরুরি ও সরকারি যোগাযোগ</span>
+      <h1 th:text="${english ? 'Helplines and emergency numbers' : 'হেল্পলাইন ও জরুরি নম্বর'}">হেল্পলাইন ও জরুরি নম্বর</h1>
+      <p th:text="${english ? 'An independent list of emergency and public information contacts. This is not a government service.' : 'জরুরি সেবা এবং সরকারি তথ্যকেন্দ্রের যোগাযোগ নম্বরের একটি স্বাধীন তালিকা। এটি কোনো সরকারি সেবা নয়।'}">জরুরি সেবা এবং সরকারি তথ্যকেন্দ্রের যোগাযোগ নম্বরের একটি স্বাধীন তালিকা। এটি কোনো সরকারি সেবা নয়।</p>
+    </div>
+    <aside class="notice notice-amber helplines-notice" aria-label="জরুরি সতর্কতা" th:attr="aria-label=${english ? 'Emergency notice' : 'জরুরি সতর্কতা'}">
+      <span class="notice-symbol" aria-hidden="true">!</span>
+      <p><strong th:text="${english ? 'In an emergency' : 'জরুরি পরিস্থিতিতে'}">জরুরি পরিস্থিতিতে</strong> <span th:text="${english ? 'call ' : 'সরাসরি '}">সরাসরি </span><strong th:text="${english ? '999' : '৯৯৯'}">৯৯৯</strong><span th:text="${english ? ' directly. Emergency responders are not dispatched through this website.' : ' কল করুন। এই ওয়েবসাইটের মাধ্যমে জরুরি সেবা প্রেরণ করা হয় না।'}"> কল করুন। এই ওয়েবসাইটের মাধ্যমে জরুরি সেবা প্রেরণ করা হয় না।</span></p>
+    </aside>
+    <p class="helplines-review-note" th:text="${english ? 'Numbers were checked against official sources on 14 October 2026. They may change; verify with the source before calling.' : 'তালিকার নম্বরগুলো ১৪ অক্টোবর ২০২৬-এ সরকারি উৎসে মিলিয়ে দেখা হয়েছে। নম্বর পরে বদলাতে পারে; কল করার আগে উৎসে যাচাই করুন।'}">তালিকার নম্বরগুলো ১৪ অক্টোবর ২০২৬-এ সরকারি উৎসে মিলিয়ে দেখা হয়েছে। নম্বর পরে বদলাতে পারে; কল করার আগে উৎসে যাচাই করুন।</p>
+    <div class="helplines-grid" th:if="${helplines != null and !helplines.isEmpty()}">
+      <article class="helpline-card" th:each="h : ${helplines}" th:classappend="${h.category == 'emergency'} ? 'helpline-emergency' : ''">
+        <div class="helpline-card-header">
+          <span class="helpline-category-badge" th:switch="${h.category}">
+            <span th:case="'emergency'" th:text="${english ? 'Emergency' : 'জরুরি'}">জরুরি</span>
+            <span th:case="'health'" th:text="${english ? 'Health' : 'স্বাস্থ্য'}">স্বাস্থ্য</span>
+            <span th:case="'information'" th:text="${english ? 'Information' : 'তথ্য'}">তথ্য</span>
+            <span th:case="'complaint'" th:text="${english ? 'Complaints' : 'অভিযোগ'}">অভিযোগ</span>
+            <span th:case="'protection'" th:text="${english ? 'Protection' : 'সুরক্ষা'}">সুরক্ষা</span>
+            <span th:case="'law'" th:text="${english ? 'Law enforcement' : 'আইনশৃঙ্খলা'}">আইনশৃঙ্খলা</span>
+            <span th:case="'immigration'" th:text="${english ? 'Immigration' : 'ইমিগ্রেশন'}">ইমিগ্রেশন</span>
+            <span th:case="*" th:text="${h.category}">অন্যান্য</span>
+          </span>
+        </div>
+        <div class="helpline-card-body">
+          <h2 th:text="${english ? h.nameEn : h.nameBn}">সেবার নাম</h2>
+          <p class="helpline-en" th:lang="${english ? 'bn' : 'en'}" th:text="${english ? h.nameBn : h.nameEn}">Service name</p>
+          <p class="helpline-desc" th:text="${english ? h.descriptionEn : h.descriptionBn}">বিবরণ</p>
+          <div class="helpline-source-row">
+            <a th:if="${h.sourceUrl != null and !h.sourceUrl.isBlank()}" th:href="${h.sourceUrl}" target="_blank" rel="noopener noreferrer"><span th:text="${english ? 'Official source' : 'সরকারি উৎস'}">সরকারি উৎস</span> <span aria-hidden="true">↗</span></a>
+            <span th:if="${h.reviewedOn != null}"><span th:text="${english ? 'Checked: ' : 'যাচাই: '}">যাচাই: </span><time th:datetime="${h.reviewedOn}" th:text="${h.reviewedOn}">2026-10-14</time></span>
+          </div>
+        </div>
+        <div class="helpline-card-footer">
+          <a class="helpline-number" th:href="'tel:' + ${h.number}" th:text="${h.number}" th:aria-label="${english ? 'Call ' + h.nameEn + ' at ' + h.number : 'কল করুন: ' + h.nameBn + ' ' + h.number}">নম্বর</a>
+        </div>
+      </article>
+    </div>
+    <p class="muted" th:if="${helplines == null or helplines.isEmpty()}" th:text="${english ? 'No helpline information is available right now.' : 'এই মুহূর্তে কোনো হেল্পলাইন তথ্য উপলব্ধ নেই।'}">এই মুহূর্তে কোনো হেল্পলাইন তথ্য উপলব্ধ নেই।</p>
+    <a class="back-link" th:href="@{/services}"><span aria-hidden="true">←</span> <span th:text="${english ? 'Back to services' : 'সেবাসমূহে যান'}">সেবাসমূহে যান</span></a>
+  </div>
+</main>
+<footer th:replace="~{fragments :: siteFooter}"></footer>
+</body>
+</html>

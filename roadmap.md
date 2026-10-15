@@ -1,15 +1,15 @@
 # Core roadmap — build in stages
 
-## Stage 1 — included in this ZIP
+## Stage 1 — current local demonstration
 
-- [x] Spring Boot 3.5.6 project, Java 21, Maven
+- [x] Spring Boot 3.5.16 project, Java 21 target, Maven
 - [x] Service directory and illustrative Bangla guidance
 - [x] Database migrations and H2 demo/Postgres option
 - [x] Local assistance draft creation
 - [x] Private tracking token (hash at rest) and lookup
 - [x] Minimal responsive website and JSON endpoints
 - [x] Typed Bangla/English keyword suggestions
-- [x] Disabled official integration boundary
+- [x] No official submission connector or route
 - [x] Unit and integration tests (run locally with Maven)
 
 ## Stage 2 — validation and trust

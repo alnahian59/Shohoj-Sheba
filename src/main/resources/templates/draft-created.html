@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="bn" th:lang="${english} ? 'en' : 'bn'" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Draft created', 'খসড়া তৈরি হয়েছে')}"></head>
+<body>
+<header th:replace="~{fragments :: siteHeader}"></header>
+<main id="main" class="page-main">
+  <div class="container form-layout">
+    <div class="success-emblem" aria-hidden="true">✓</div>
+    <div class="page-heading centered">
+      <span class="section-kicker"><span lang="en">LOCAL DRAFT SAVED</span><span th:unless="${english}"> / সংরক্ষিত</span></span>
+      <h1 th:text="${english} ? 'Your local draft has been created' : 'আপনার স্থানীয় খসড়া তৈরি হয়েছে'">আপনার স্থানীয় খসড়া তৈরি হয়েছে</h1>
+      <p th:text="${english} ? 'This is a draft in this app. No official application has been submitted.' : 'এটি এই অ্যাপের খসড়া। কোনো সরকারি আবেদন পাঠানো হয়নি।'">এটি এই অ্যাপের খসড়া। কোনো সরকারি আবেদন পাঠানো হয়নি।</p>
+    </div>
+
+    <section class="panel credential-panel" aria-labelledby="save-details-heading">
+      <h2 id="save-details-heading" th:text="${english} ? 'Draft details' : 'খসড়ার বিবরণ'">খসড়ার বিবরণ</h2>
+      <p class="muted" th:text="${english} ? 'You can reopen this draft later from My drafts. The private code below is shown only on this page as an optional receipt.' : 'আপনি “আমার খসড়া” থেকে পরে এটি খুলতে পারবেন। নিচের ব্যক্তিগত কোডটি ঐচ্ছিক রসিদ হিসেবে শুধু এই পাতায় দেখানো হচ্ছে।'">আপনি “আমার খসড়া” থেকে পরে এটি খুলতে পারবেন। নিচের ব্যক্তিগত কোডটি ঐচ্ছিক রসিদ হিসেবে শুধু এই পাতায় দেখানো হচ্ছে।</p>
+
+      <div class="credential-field">
+        <p class="credential-label" th:text="${english} ? 'Reference' : 'রেফারেন্স'">রেফারেন্স</p>
+        <div class="credential-value" id="reference" th:text="${created.reference}">—</div>
+        <p class="field-help" th:text="${english} ? 'This identifies your draft.' : 'এটি আপনার খসড়ার পরিচিতি।'">এটি আপনার খসড়ার পরিচিতি।</p>
+      </div>
+
+      <div class="credential-field">
+        <p class="credential-label" th:text="${english} ? 'Private code' : 'ব্যক্তিগত কোড'">ব্যক্তিগত কোড</p>
+        <div class="credential-value credential-code" id="tracking-code" th:text="${created.trackingCode}">—</div>
+        <p class="field-help" th:text="${english} ? 'Keep this code private. You do not need it to open drafts from your account.' : 'কোডটি গোপন রাখুন। অ্যাকাউন্ট থেকে খসড়া খুলতে এটি লাগে না।'">কোডটি গোপন রাখুন। অ্যাকাউন্ট থেকে খসড়া খুলতে এটি লাগে না।</p>
+      </div>
+    </section>
+
+    <aside class="notice notice-amber" aria-label="গুরুত্বপূর্ণ সতর্কতা" th:attr="aria-label=${english} ? 'Important notice' : 'গুরুত্বপূর্ণ সতর্কতা'">
+      <span class="notice-symbol" aria-hidden="true">!</span>
+      <p th:text="${english} ? 'Sign out after using a shared device. This draft has not been sent to any government office.' : 'শেয়ার করা ডিভাইসে কাজ শেষে লগ আউট করুন। এই খসড়া কোনো সরকারি দপ্তরে পাঠানো হয়নি।'">শেয়ার করা ডিভাইসে কাজ শেষে লগ আউট করুন। এই খসড়া কোনো সরকারি দপ্তরে পাঠানো হয়নি।</p>
+    </aside>
+
+    <div class="page-actions">
+      <a class="button button-primary" th:href="@{/my/drafts}"><span th:text="${english} ? 'View my drafts' : 'আমার খসড়া দেখুন'">আমার খসড়া দেখুন</span> <span aria-hidden="true">→</span></a>
+      <a class="text-link" th:href="@{/services}" th:text="${english} ? 'Go to services' : 'সেবাসমূহে যান'">সেবাসমূহে যান</a>
+    </div>
+  </div>
+</main>
+<footer th:replace="~{fragments :: siteFooter}"></footer>
+</body>
+</html>

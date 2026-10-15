@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="bn" th:lang="${english} ? 'en' : 'bn'" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('New draft', 'নতুন খসড়া')}"></head>
+<body>
+<header th:replace="~{fragments :: siteHeader}"></header>
+<main id="main" class="page-main">
+  <div class="container form-layout">
+    <nav class="breadcrumb" aria-label="অবস্থান" th:attr="aria-label=${english} ? 'Breadcrumb' : 'অবস্থান'">
+      <a th:href="@{/services}" th:text="${english} ? 'Services' : 'সেবাসমূহ'">সেবাসমূহ</a><span aria-hidden="true">/</span>
+      <a th:href="@{/services/{code}(code=${guide.code})}" th:text="${english ? guide.titleEn : guide.titleBn}">সেবা</a><span aria-hidden="true">/</span>
+      <span th:text="${english} ? 'New draft' : 'নতুন খসড়া'">নতুন খসড়া</span>
+    </nav>
+    <div class="page-heading">
+      <span class="section-kicker"><span lang="en">CREATE A LOCAL DRAFT</span><span th:unless="${english}"> / আপনার নিজের জন্য</span></span>
+      <h1 th:text="${english} ? 'Create a local draft' : 'স্থানীয় খসড়া তৈরি করুন'">স্থানীয় খসড়া তৈরি করুন</h1>
+      <span class="page-title-en" lang="en" th:unless="${english}" th:text="${guide.titleEn}">Service title</span>
+      <p><strong th:text="${english ? guide.titleEn : guide.titleBn}">সেবা</strong> <span th:text="${english} ? '— save a question or your next step for this service.' : 'বিষয়ে আপনার প্রশ্ন বা পরের কাজ লিখে রাখতে পারেন।'">বিষয়ে আপনার প্রশ্ন বা পরের কাজ লিখে রাখতে পারেন।</span></p>
+    </div>
+    <form class="panel form-panel" method="post" th:action="@{/drafts}">
+      <input th:if="${_csrf != null}" type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+      <input type="hidden" name="serviceCode" th:value="${guide.code}">
+      <div class="form-field">
+        <label for="question"><span th:text="${english} ? 'Your question or next step' : 'আপনার প্রশ্ন বা করণীয়'">আপনার প্রশ্ন বা করণীয়</span> <span class="optional" th:text="${english} ? '(optional)' : '(ইচ্ছা হলে)'">(ইচ্ছা হলে)</span></label>
+        <textarea id="question" name="question" rows="5" maxlength="500"
+                  placeholder="যেমন, আবেদন করার আগে কোন তথ্যগুলো যাচাই করব?"
+                  th:placeholder="${english} ? 'For example, what should I check before applying?' : 'যেমন, আবেদন করার আগে কোন তথ্যগুলো যাচাই করব?'"
+                  aria-describedby="question-help"
+                  th:text="${question}"></textarea>
+        <p id="question-help" class="field-help" th:text="${english} ? 'Up to 500 characters. Do not enter identity numbers, addresses, or document details.' : 'সর্বোচ্চ ৫০০ অক্ষর। পরিচয় নম্বর, ঠিকানা বা নথির তথ্য লিখবেন না।'">সর্বোচ্চ ৫০০ অক্ষর। পরিচয় নম্বর, ঠিকানা বা নথির তথ্য লিখবেন না।</p>
+      </div>
+      <p class="form-error" role="alert" th:if="${formError}" th:text="${formError}"></p>
+      <div class="form-actions">
+        <button class="button button-primary" type="submit"><span th:text="${english} ? 'Create draft' : 'খসড়া তৈরি করুন'">খসড়া তৈরি করুন</span> <span aria-hidden="true">→</span></button>
+        <a class="text-link" th:href="@{/services/{code}(code=${guide.code})}" th:text="${english} ? 'Back to the guide' : 'নির্দেশনায় ফিরুন'">নির্দেশনায় ফিরুন</a>
+      </div>
+    </form>
+    <div class="privacy-note">
+      <span aria-hidden="true">🔒</span>
+      <p th:text="${english} ? 'This draft is saved to your account. You can open it later from My drafts. It is not an official application.' : 'খসড়াটি আপনার অ্যাকাউন্টে সংরক্ষিত হবে। পরে “আমার খসড়া” থেকে খুলতে পারবেন। এটি সরকারি আবেদন নয়।'">খসড়াটি আপনার অ্যাকাউন্টে সংরক্ষিত হবে। পরে “আমার খসড়া” থেকে খুলতে পারবেন। এটি সরকারি আবেদন নয়।</p>
+    </div>
+  </div>
+</main>
+<footer th:replace="~{fragments :: siteFooter}"></footer>
+</body>
+</html>

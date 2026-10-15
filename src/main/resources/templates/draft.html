@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="bn" th:lang="${english} ? 'en' : 'bn'" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Your draft', 'আপনার খসড়া')}"></head>
+<body>
+<header th:replace="~{fragments :: siteHeader}"></header>
+<main id="main" class="page-main">
+  <div class="container form-layout">
+    <nav class="breadcrumb" aria-label="অবস্থান" th:attr="aria-label=${english} ? 'Breadcrumb' : 'অবস্থান'">
+      <a th:href="@{/services}" th:text="${english} ? 'Services' : 'সেবাসমূহ'">সেবাসমূহ</a><span aria-hidden="true">/</span><span th:text="${english} ? 'Your draft' : 'আপনার খসড়া'">আপনার খসড়া</span>
+    </nav>
+    <div class="page-heading">
+      <span class="section-kicker"><span lang="en">YOUR LOCAL DRAFT</span><span th:unless="${english}"> / শুধু এই অ্যাপের তথ্য</span></span>
+      <h1 th:text="${english} ? 'Your local draft' : 'আপনার স্থানীয় খসড়া'">আপনার স্থানীয় খসড়া</h1>
+      <p th:text="${english} ? 'View and update the question you saved here. This page does not show official applications or their status.' : 'এখানে নিজের লেখা প্রশ্নটি দেখতে ও বদলাতে পারবেন। কোনো সরকারি আবেদন বা অবস্থা এখানে দেখানো হয় না।'">এখানে নিজের লেখা প্রশ্নটি দেখতে ও বদলাতে পারবেন। কোনো সরকারি আবেদন বা অবস্থা এখানে দেখানো হয় না।</p>
+    </div>
+    <p class="success-message" role="status" th:if="${success}" th:text="${success}"></p>
+    <div class="draft-summary">
+      <div><span th:text="${english} ? 'Service' : 'সেবা'">সেবা</span><strong th:text="${serviceTitle}">সেবার নাম</strong></div>
+      <div><span th:text="${english} ? 'Local status' : 'স্থানীয় অবস্থা'">স্থানীয় অবস্থা</span><strong th:text="${english} ? 'Draft' : 'খসড়া'">খসড়া</strong></div>
+      <div><span th:text="${english} ? 'Reference' : 'রেফারেন্স'">রেফারেন্স</span><strong class="break-anywhere" th:text="${draft.reference}">রেফারেন্স</strong></div>
+    </div>
+    <form class="panel form-panel" method="post" th:action="@{/drafts/{reference}/update(reference=${draft.reference})}" autocomplete="off">
+      <input th:if="${_csrf != null}" type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+      <input type="hidden" name="expectedVersion" th:value="${draft.version}">
+      <div class="form-field">
+        <label for="draft-question" th:text="${english} ? 'Your question or next step' : 'আপনার প্রশ্ন বা করণীয়'">আপনার প্রশ্ন বা করণীয়</label>
+        <textarea id="draft-question" name="question" rows="5" maxlength="500"
+                  aria-describedby="draft-question-help"
+                  th:text="${question != null ? question : draft.question}"></textarea>
+        <p id="draft-question-help" class="field-help" th:text="${english} ? 'Up to 500 characters. Do not enter identity numbers or document details.' : 'সর্বোচ্চ ৫০০ অক্ষর। ব্যক্তিগত পরিচয় নম্বর বা নথির তথ্য লিখবেন না।'">সর্বোচ্চ ৫০০ অক্ষর। ব্যক্তিগত পরিচয় নম্বর বা নথির তথ্য লিখবেন না।</p>
+      </div>
+      <p class="form-error" role="alert" th:if="${formError}" th:text="${formError}"></p>
+      <button class="button button-primary" type="submit"><span th:text="${english} ? 'Save changes' : 'পরিবর্তন সংরক্ষণ করুন'">পরিবর্তন সংরক্ষণ করুন</span> <span aria-hidden="true">→</span></button>
+    </form>
+    <p class="small-note under-form" th:text="${english} ? 'Sign out when you finish on a shared device. You can sign in later to reopen the draft.' : 'শেয়ার করা ডিভাইসে কাজ শেষে লগ আউট করুন। পরে আপনার অ্যাকাউন্টে লগ ইন করে খসড়াটি খুলতে পারবেন।'">শেয়ার করা ডিভাইসে কাজ শেষে লগ আউট করুন। পরে আপনার অ্যাকাউন্টে লগ ইন করে খসড়াটি খুলতে পারবেন।</p>
+    <a class="back-link" th:href="@{/my/drafts}"><span aria-hidden="true">←</span> <span th:text="${english} ? 'Back to my drafts' : 'আমার খসড়ায় ফিরুন'">আমার খসড়ায় ফিরুন</span></a>
+  </div>
+</main>
+<footer th:replace="~{fragments :: siteFooter}"></footer>
+</body>
+</html>

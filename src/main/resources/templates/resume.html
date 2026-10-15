@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="bn" th:lang="${english} ? 'en' : 'bn'" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Add an older draft', 'খসড়া খুলুন')}"></head>
+<body>
+<header th:replace="~{fragments :: siteHeader}"></header>
+<main id="main" class="page-main">
+  <div class="container form-layout">
+    <nav class="breadcrumb" aria-label="অবস্থান" th:attr="aria-label=${english} ? 'Breadcrumb' : 'অবস্থান'">
+      <a th:href="@{/my/drafts}" th:text="${english} ? 'My drafts' : 'আমার খসড়া'">আমার খসড়া</a><span aria-hidden="true">/</span><span th:text="${english} ? 'Add an older draft' : 'পুরোনো খসড়া যোগ করুন'">পুরোনো খসড়া যোগ করুন</span>
+    </nav>
+    <div class="page-heading">
+      <span class="section-kicker"><span lang="en">CLAIM AN OLDER DRAFT</span><span th:unless="${english}"> / আগের কাজ</span></span>
+      <h1 th:text="${english} ? 'Add an older draft to your account' : 'পুরোনো খসড়া অ্যাকাউন্টে যোগ করুন'">পুরোনো খসড়া অ্যাকাউন্টে যোগ করুন</h1>
+      <p th:text="${english} ? 'If you have the reference and private code for a draft created before accounts were available, enter them here. New drafts can be opened directly from My drafts.' : 'অ্যাকাউন্ট চালুর আগে তৈরি কোনো খসড়ার রেফারেন্স ও ব্যক্তিগত কোড থাকলে এখানে লিখুন। নতুন খসড়াগুলো সরাসরি “আমার খসড়া” থেকে খুলতে পারবেন।'">অ্যাকাউন্ট চালুর আগে তৈরি কোনো খসড়ার রেফারেন্স ও ব্যক্তিগত কোড থাকলে এখানে লিখুন। নতুন খসড়াগুলো সরাসরি “আমার খসড়া” থেকে খুলতে পারবেন।</p>
+    </div>
+    <form class="panel form-panel" method="post" th:action="@{/resume}" autocomplete="off">
+      <input th:if="${_csrf != null}" type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+      <div class="form-field">
+        <label for="resume-reference" th:text="${english} ? 'Reference' : 'রেফারেন্স'">রেফারেন্স</label>
+        <input id="resume-reference" type="text" name="reference" required spellcheck="false"
+               autocapitalize="off" autocomplete="off" placeholder="রেফারেন্স লিখুন" th:placeholder="${english} ? 'Enter the reference' : 'রেফারেন্স লিখুন'">
+      </div>
+      <div class="form-field">
+        <label for="resume-code" th:text="${english} ? 'Private code' : 'ব্যক্তিগত কোড'">ব্যক্তিগত কোড</label>
+        <input id="resume-code" type="password" name="trackingCode" required spellcheck="false"
+               autocapitalize="off" autocomplete="off" placeholder="ব্যক্তিগত কোড লিখুন" th:placeholder="${english} ? 'Enter the private code' : 'ব্যক্তিগত কোড লিখুন'">
+        <p class="field-help" th:text="${english} ? 'The code is hidden as you type. Enter it carefully.' : 'কোড লুকানো থাকে। সাবধানে টাইপ করুন।'">কোড লুকানো থাকে। সাবধানে টাইপ করুন।</p>
+      </div>
+      <p class="form-error" role="alert" th:if="${formError}" th:text="${formError}"></p>
+      <button class="button button-primary" type="submit"><span th:text="${english} ? 'Add older draft' : 'পুরোনো খসড়া যোগ করুন'">পুরোনো খসড়া যোগ করুন</span> <span aria-hidden="true">→</span></button>
+    </form>
+    <div class="privacy-note">
+      <span aria-hidden="true">🔒</span>
+      <p th:text="${english} ? 'The reference and code are sent only through this form, not placed in the web address. Do not add someone else’s draft.' : 'রেফারেন্স ও কোড শুধু এই ফর্মে পাঠানো হয়; ওয়েব ঠিকানায় রাখা হয় না। অন্য কারও খসড়া যোগ করবেন না।'">রেফারেন্স ও কোড শুধু এই ফর্মে পাঠানো হয়; ওয়েব ঠিকানায় রাখা হয় না। অন্য কারও খসড়া যোগ করবেন না।</p>
+    </div>
+    <a class="back-link" th:href="@{/my/drafts}"><span aria-hidden="true">←</span> <span th:text="${english} ? 'Back to my drafts' : 'আমার খসড়ায় ফিরুন'">আমার খসড়ায় ফিরুন</span></a>
+  </div>
+</main>
+<footer th:replace="~{fragments :: siteFooter}"></footer>
+</body>
+</html>

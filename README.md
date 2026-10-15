@@ -1,14 +1,16 @@
 # Shohoj Sheba — সহজ সেবা
 
-**A proposed Bangla voice-assisted citizen service portal built with Java and Spring Boot.**
+**A Bangla-first citizen service website built with Java and Spring Boot.**
 
-Speak your need, understand the process, prepare your information, and follow your service request through one accessible website.
+Browse illustrative Bangla service guidance, ask a question in a server-rendered chat, and keep private drafts in an account.
 
-> **Project status:** Planning and design. This README describes the intended implementation; it does not claim that the features, integrations, or deployment already exist. No government affiliation or integration is established by this document. The working project name can be changed.
+> **Project status:** The website has a login-first entry, registration, account-owned drafts, public services, and a Java Spring Boot chat page. Pages use Thymeleaf forms and CSS without site JavaScript. The assistant recognizes a limited set of service topics through explainable rules; it is not a general AI model. Voice, documents, official submission, and the broader platform design below remain proposals. No government affiliation or integration is established.
+
+The current implementation provides eight illustrative service guides, reviewed public helplines, and account-owned drafts. Guests can browse and ask the assistant without saving user data. The Java backend uses an H2 file by default and has been tested against local PostgreSQL. See [database setup](docs/database.md), [service sources](docs/content-sources.md), and [helpline sources](docs/helpline-sources.md). Saving a draft does not submit an official application.
 
 ##  Languages and technology stack
 
-The initial application will use one modular Spring Boot backend and a responsive, server-rendered frontend. It is a software-only project and uses the microphone and camera already available on users' devices.
+The current application uses one modular Spring Boot backend and a responsive, server-rendered frontend. Future voice or document work would require separate input and processing design.
 
 | Layer | Proposed technology | Purpose |
 | --- | --- | --- |
@@ -16,7 +18,7 @@ The initial application will use one modular Spring Boot backend and a responsiv
 | Backend framework | Spring Boot with Spring MVC | Web pages, HTTP endpoints, dependency injection, and application configuration |
 | Frontend structure | HTML5 and Thymeleaf | Accessible pages and server-rendered forms |
 | Frontend styling | CSS3 and Bootstrap | Responsive layouts, large controls, and consistent visual design |
-| Frontend interaction | JavaScript | Microphone recording, audio playback, uploads, progress updates, and asynchronous requests |
+| Frontend interaction | Thymeleaf forms | Server-rendered navigation, chat, login, and drafts |
 | Database language | SQL | Relational data definition and queries |
 | Database | PostgreSQL | Accounts, service definitions, drafts, consent records, and job state |
 | Persistence | Spring Data JPA | Repository access and entity persistence |
@@ -35,11 +37,11 @@ Exact dependency versions will be pinned in the build when implementation begins
 
 ### Frontend approach
 
-Thymeleaf renders the main pages. JavaScript progressively adds voice recording, audio playback, and background progress checks. Users can still use buttons and forms if voice services fail or microphone permission is denied.
+Thymeleaf renders the pages and regular HTML forms submit to Java controllers. CSS handles the responsive layout. There is no site JavaScript in this version.
 
 React is not required for the initial version. A separate mobile client can later use the same backend APIs. An installable progressive web app is a later milestone, not an existing capability. Sensitive documents must not be placed in an offline browser cache by default.
 
-Browser microphone access requires user permission and a secure context in production. The website records speech after an explicit user action; it does not listen continuously in the background.
+Voice is future work. It needs an audio capture or upload path, a chosen speech engine, and clear privacy handling before it is added.
 
 ##  Abstract
 
@@ -47,7 +49,7 @@ Shohoj Sheba is a proposed software platform designed to improve access to citiz
 
 The system will combine speech recognition, natural language processing, structured service workflows, reviewed official information, and text-to-speech output. A citizen can describe a need in ordinary language, answer one question at a time, prepare a document checklist, confirm extracted information, save a draft, and resume the task later. The assistant will use approved source material to explain procedures and will ask for clarification when an utterance or document cannot be understood reliably. Names, dates, identifiers, and other consequential details will require user confirmation before use.
 
-Java and Spring Boot will provide the application backend, while HTML, CSS, JavaScript, Thymeleaf, and Bootstrap will provide the frontend. PostgreSQL will store structured records. Object-oriented design will separate citizen sessions, service definitions, workflow steps, application drafts, documents, and integration adapters. Controlled multithreading will support independent operations such as audio processing, document extraction, voice generation, reminders, and source monitoring while preserving the correct order of each citizen's workflow.
+Java and Spring Boot provide the application backend, while HTML, CSS, and Thymeleaf provide the current frontend. PostgreSQL stores structured records when its profile is active. The longer-term design would separate citizen sessions, service definitions, workflow steps, application drafts, documents, and integration adapters. Future background processing would need controlled concurrency.
 
 The long-term goal is a single interface for preparing and following service requests, with direct transactions added wherever supported and authorised integrations are available. Official submission, approval, document issuance, and required physical checks remain dependent on the responsible authorities. The project will be evaluated through task-completion studies, Bangla voice accuracy, accessibility testing, data-isolation tests, and recovery from processing failures. Its intended contribution is a practical way for citizens to understand and complete the next correct step with less dependence on complex written interfaces.
 
@@ -265,7 +267,7 @@ Sensitive values and raw documents must not be copied into ordinary application 
 
 ##  Proposed HTTP API
 
-These endpoints are design examples, not implemented routes.
+These endpoints describe possible later integrations; they are not all implemented. Current public routes include `GET /api/services`, `GET /api/helplines`, `POST /api/suggestions`, and `POST /api/assistant`. Current account-protected routes include `GET /api/requests`, `GET /api/requests/{reference}`, and draft create/update routes in `ApiController`. Cookie-authenticated writes require CSRF protection.
 
 | Method and route | Purpose |
 | --- | --- |
@@ -313,7 +315,7 @@ Protected endpoints check record ownership as well as login. Cookie-authenticate
 | `src/main/java/.../integration/` | Mock and authorised external connectors |
 | `src/main/java/.../jobs/` | Executors, persistent jobs, and reminders |
 | `src/main/resources/templates/` | Thymeleaf pages |
-| `src/main/resources/static/` | CSS, JavaScript, and public images |
+| `src/main/resources/static/` | CSS and public images |
 | `src/main/resources/db/migration/` | Database migration scripts |
 | `src/test/` | Automated tests and synthetic fixtures |
 | `docs/` | Architecture decisions and integration notes |
@@ -322,7 +324,7 @@ Private uploads do not belong under `static/` or in Git.
 
 ##  Implementation and setup plan
 
-There is no verified runnable repository supplied with this README. Installation commands, dependency versions, and environment keys must be documented against the implemented project before release.
+The Maven application is runnable now with accounts, account-owned drafts, a public Java chat, and a login-first entry. Use [database setup](docs/database.md) for local and PostgreSQL commands. The following steps describe the broader implementation plan.
 
 Initial implementation steps:
 
@@ -357,9 +359,11 @@ Start with a small usability pilot involving people with limited literacy and ex
 ##  Roadmap
 
 - [ ] Define and verify the first service workflows.
-- [ ] Build responsive Bangla pages and manual navigation.
-- [ ] Add private drafts, authentication, and role permissions.
-- [ ] Add Bangla voice input, clarification, and audio output.
+- [x] Build responsive Bangla pages and manual navigation.
+- [x] Add account sign-in and account-owned private drafts.
+- [x] Add a public typed chat rendered by Spring Boot.
+- [ ] Add voice input and output after selecting a speech engine and privacy approach.
+- [ ] Expand role permissions and evaluate Bangla speech accuracy.
 - [ ] Add reviewed guide publication and version history.
 - [ ] Add document extraction and spoken confirmation.
 - [ ] Add persistent jobs, reminders, and recovery handling.

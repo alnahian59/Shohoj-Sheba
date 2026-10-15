@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="bn" th:lang="${english ? 'en' : 'bn'}" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Create account', 'অ্যাকাউন্ট খুলুন')}"></head>
+<body>
+<header th:replace="~{fragments :: siteHeader}"></header>
+<main id="main" class="page-main auth-main">
+  <div class="container auth-grid">
+    <div class="auth-intro">
+      <span class="section-kicker" th:text="${english ? 'GET STARTED' : 'GET STARTED / শুরু করুন'}">GET STARTED / শুরু করুন</span>
+      <h1 th:if="${english}">Your work.<br>In your hands.</h1>
+      <h1 th:unless="${english}">আপনার কাজ,<br>আপনার নিয়ন্ত্রণে।</h1>
+      <p th:text="${english ? 'Create a Shohoj Sheba account to keep your questions and drafts together. Pick up where you left off.' : 'সহজ সেবায় অ্যাকাউন্ট খুলে নিজের প্রশ্ন ও খসড়া এক জায়গায় রাখুন। পরে যেখানে থেমেছিলেন, সেখান থেকে শুরু করুন।'}">সহজ সেবায় অ্যাকাউন্ট খুলে নিজের প্রশ্ন ও খসড়া এক জায়গায় রাখুন। পরে যেখানে থেমেছিলেন, সেখান থেকে শুরু করুন।</p>
+      <div class="auth-intro-bottom">
+        <p th:text="${english ? 'You can browse services and use chat as a guest. An account is needed to save drafts.' : 'অতিথি হিসেবেও সেবার তথ্য ও চ্যাট দেখা যায়। খসড়া সংরক্ষণ করতে অ্যাকাউন্ট দরকার।'}">অতিথি হিসেবেও সেবার তথ্য ও চ্যাট দেখা যায়। খসড়া সংরক্ষণ করতে অ্যাকাউন্ট দরকার।</p>
+        <a class="text-link" th:href="@{/services}"><span th:text="${english ? 'Browse services as a guest' : 'অতিথি হিসেবে সেবা দেখুন'}">অতিথি হিসেবে সেবা দেখুন</span> <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+    <section class="panel auth-card" aria-labelledby="register-heading">
+      <span class="auth-card-index" th:text="${english ? 'JOIN SHOHOJ SHEBA' : 'JOIN SHOHOJ SHEBA / সহজ সেবায় যোগ দিন'}">JOIN SHOHOJ SHEBA / সহজ সেবায় যোগ দিন</span>
+      <h2 id="register-heading" th:text="${english ? 'Create your account' : 'আপনার অ্যাকাউন্ট তৈরি করুন'}">আপনার অ্যাকাউন্ট তৈরি করুন</h2>
+      <p class="auth-card-lead"><span th:text="${english ? 'Already registered? ' : 'আগেই অ্যাকাউন্ট আছে? '}">আগেই অ্যাকাউন্ট আছে? </span><a th:href="@{/login}" th:text="${english ? 'Sign in' : 'লগ ইন করুন'}">লগ ইন করুন</a><span th:text="${english ? '.' : '।'}">।</span></p>
+      <p class="form-error" role="alert" th:if="${formError}" th:text="${formError}"></p>
+      <form method="post" th:action="@{/register}">
+        <input th:if="${_csrf != null}" type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+        <div class="auth-field-grid">
+          <div class="form-field">
+            <label for="register-name" th:text="${english ? 'Full name' : 'আপনার নাম'}">আপনার নাম</label>
+            <input id="register-name" type="text" name="displayName" autocomplete="name" minlength="2" maxlength="100" required placeholder="যে নামে আপনাকে দেখাব" th:placeholder="${english ? 'The name to display' : 'যে নামে আপনাকে দেখাব'}" th:value="${displayName}">
+          </div>
+          <div class="form-field">
+            <label for="register-email" th:text="${english ? 'Email' : 'ইমেইল'}">ইমেইল</label>
+            <input id="register-email" type="email" name="email" autocomplete="email" inputmode="email" maxlength="254" required placeholder="name@example.com" th:value="${email}">
+          </div>
+          <div class="form-field">
+            <label for="register-password" th:text="${english ? 'Password' : 'পাসওয়ার্ড'}">পাসওয়ার্ড</label>
+            <input id="register-password" type="password" name="password" autocomplete="new-password" minlength="12" required aria-describedby="password-help" placeholder="কমপক্ষে ১২ অক্ষর" th:placeholder="${english ? 'At least 12 characters' : 'কমপক্ষে ১২ অক্ষর'}">
+          </div>
+          <div class="form-field">
+            <label for="register-confirm" th:text="${english ? 'Confirm password' : 'পাসওয়ার্ড আবার লিখুন'}">পাসওয়ার্ড আবার লিখুন</label>
+            <input id="register-confirm" type="password" name="confirmPassword" autocomplete="new-password" minlength="12" required placeholder="একই পাসওয়ার্ড" th:placeholder="${english ? 'Enter password again' : 'একই পাসওয়ার্ড'}">
+          </div>
+        </div>
+        <p id="password-help" class="field-help" th:text="${english ? 'Use at least 12 characters. Do not share your password.' : 'কমপক্ষে ১২ অক্ষর ব্যবহার করুন। পাসওয়ার্ড অন্য কাউকে দেবেন না।'}">কমপক্ষে ১২ অক্ষর ব্যবহার করুন। পাসওয়ার্ড অন্য কাউকে দেবেন না।</p>
+        <button class="button button-primary full-width auth-submit" type="submit"><span th:text="${english ? 'Create account' : 'অ্যাকাউন্ট তৈরি করুন'}">অ্যাকাউন্ট তৈরি করুন</span> <span aria-hidden="true">→</span></button>
+      </form>
+      <p class="auth-card-footer" th:text="${english ? 'With an account, you can view and edit your own drafts.' : 'অ্যাকাউন্ট খুললে আপনি নিজের খসড়া দেখতে ও সম্পাদনা করতে পারবেন।'}">অ্যাকাউন্ট খুললে আপনি নিজের খসড়া দেখতে ও সম্পাদনা করতে পারবেন।</p>
+    </section>
+  </div>
+</main>
+<footer th:replace="~{fragments :: siteFooter}"></footer>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="bn" th:lang="${english ? 'en' : 'bn'}" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('About us', 'আমাদের সম্পর্কে')}"></head>
+<body>
+<header th:replace="~{fragments :: siteHeader}"></header>
+<main id="main" class="page-main">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="অবস্থান" th:attr="aria-label=${english ? 'Breadcrumb' : 'অবস্থান'}"><a th:href="@{/services}" th:text="${english ? 'Services' : 'সেবাসমূহ'}">সেবাসমূহ</a><span aria-hidden="true">/</span><span th:text="${english ? 'About us' : 'আমাদের সম্পর্কে'}">আমাদের সম্পর্কে</span></nav>
+
+    <div class="page-heading">
+      <span class="section-kicker" th:text="${english ? 'ABOUT THIS PROJECT' : 'ABOUT THIS PROJECT / প্রকল্প পরিচিতি'}">ABOUT THIS PROJECT / প্রকল্প পরিচিতি</span>
+      <h1 th:text="${english ? 'About Shohoj Sheba' : 'সহজ সেবা সম্পর্কে'}">সহজ সেবা সম্পর্কে</h1>
+      <p th:text="${english ? 'An independent sample project to help people understand service steps and organize their questions.' : 'একটি স্বাধীন নমুনা প্রকল্প — সরকারি সেবার পথ বোঝাতে এবং নাগরিকদের প্রশ্ন গুছিয়ে রাখতে সাহায্য করতে।'}">একটি স্বাধীন নমুনা প্রকল্প — সরকারি সেবার পথ বোঝাতে এবং নাগরিকদের প্রশ্ন গুছিয়ে রাখতে সাহায্য করতে।</p>
+    </div>
+
+    <div class="about-grid">
+      <section class="about-card" aria-labelledby="about-goal">
+        <div class="about-icon" aria-hidden="true">🎯</div>
+        <h2 id="about-goal" th:text="${english ? 'Our goal' : 'লক্ষ্য'}">লক্ষ্য</h2>
+        <p th:text="${english ? 'People often know what they need but are unsure where to go or which documents to bring. Shohoj Sheba helps make those steps easier to understand.' : 'অনেক নাগরিক জানেন তাঁদের কী দরকার, কিন্তু কোথায় যেতে হবে বা কোন নথি লাগবে — তা বোঝেন না। সহজ সেবা সেই বোঝার পথটুকু সহজ করতে চায়।'}">অনেক নাগরিক জানেন তাঁদের কী দরকার, কিন্তু কোথায় যেতে হবে বা কোন নথি লাগবে — তা বোঝেন না। সহজ সেবা সেই বোঝার পথটুকু সহজ করতে চায়।</p>
+      </section>
+
+      <section class="about-card" aria-labelledby="about-works">
+        <div class="about-icon" aria-hidden="true">⚙️</div>
+        <h2 id="about-works" th:text="${english ? 'How it works' : 'যেভাবে কাজ করে'}">যেভাবে কাজ করে</h2>
+        <p th:text="${english ? 'As a guest, describe what you need in chat, read the assistant reply, and explore sample guides. Sign in to save a draft.' : 'অতিথি হিসেবে চ্যাটে আপনার প্রয়োজন লিখতে, সহকারীর উত্তর দেখতে এবং নমুনা নির্দেশনা পড়তে পারবেন। খসড়া সংরক্ষণ করতে লগ ইন করতে হবে।'}">অতিথি হিসেবে চ্যাটে আপনার প্রয়োজন লিখতে, সহকারীর উত্তর দেখতে এবং নমুনা নির্দেশনা পড়তে পারবেন। খসড়া সংরক্ষণ করতে লগ ইন করতে হবে।</p>
+      </section>
+
+      <section class="about-card" aria-labelledby="about-limit">
+        <div class="about-icon" aria-hidden="true">⚠️</div>
+        <h2 id="about-limit" th:text="${english ? 'Limitations' : 'সীমাবদ্ধতা'}">সীমাবদ্ধতা</h2>
+        <p th:text="${english ? 'Guidance on this site is illustrative. Before applying, check current rules, fees, and deadlines on the relevant government website.' : 'এই সাইটের নির্দেশনা উদাহরণমূলক। আবেদন করার আগে সংশ্লিষ্ট সরকারি ওয়েবসাইটে বর্তমান নিয়ম, ফি ও সময়সীমা যাচাই করুন।'}">এই সাইটের নির্দেশনা উদাহরণমূলক। আবেদন করার আগে সংশ্লিষ্ট সরকারি ওয়েবসাইটে বর্তমান নিয়ম, ফি ও সময়সীমা যাচাই করুন।</p>
+      </section>
+
+      <section class="about-card" aria-labelledby="about-data">
+        <div class="about-icon" aria-hidden="true">🔒</div>
+        <h2 id="about-data" th:text="${english ? 'Your information' : 'তথ্য সুরক্ষা'}">তথ্য সুরক্ষা</h2>
+        <p th:text="${english ? 'Guest questions are not saved here. Drafts saved after signing in stay on this site’s server and are not sent to a government office.' : 'অতিথির প্রশ্ন এখানে সংরক্ষণ করা হয় না। অ্যাকাউন্টে সাইন ইন করে রাখা খসড়া এই সাইটের সার্ভারে থাকে; কোনো সরকারি দপ্তরে পাঠানো হয় না।'}">অতিথির প্রশ্ন এখানে সংরক্ষণ করা হয় না। অ্যাকাউন্টে সাইন ইন করে রাখা খসড়া এই সাইটের সার্ভারে থাকে; কোনো সরকারি দপ্তরে পাঠানো হয় না।</p>
+      </section>
+    </div>
+
+    <aside class="notice notice-amber about-notice" aria-label="গুরুত্বপূর্ণ তথ্য" th:attr="aria-label=${english ? 'Important information' : 'গুরুত্বপূর্ণ তথ্য'}">
+      <span class="notice-symbol" aria-hidden="true">!</span>
+      <p><strong th:text="${english ? 'This is not a government website.' : 'এটি কোনো সরকারি সংস্থার ওয়েবসাইট নয়।'}">এটি কোনো সরকারি সংস্থার ওয়েবসাইট নয়।</strong> <span th:text="${english ? 'Applications are not accepted and approvals or decisions are not issued here. Use the appropriate authority’s website for official applications.' : 'এখানে কোনো আবেদন গ্রহণ করা হয় না, কোনো অনুমোদন বা সিদ্ধান্ত দেওয়া হয় না। সরকারি আবেদনের জন্য সংশ্লিষ্ট কর্তৃপক্ষের ওয়েবসাইট ব্যবহার করুন।'}">এখানে কোনো আবেদন গ্রহণ করা হয় না, কোনো অনুমোদন বা সিদ্ধান্ত দেওয়া হয় না। সরকারি আবেদনের জন্য সংশ্লিষ্ট কর্তৃপক্ষের ওয়েবসাইট ব্যবহার করুন।</span></p>
+    </aside>
+
+    <section class="about-tech" aria-labelledby="about-tech-heading">
+      <h2 id="about-tech-heading" th:text="${english ? 'Technology' : 'প্রযুক্তি'}">প্রযুক্তি</h2>
+      <p th:text="${english ? 'This project is built with Java and Spring Boot. It uses PostgreSQL for data storage and Flyway for database migrations.' : 'এই প্রকল্পটি Java ও Spring Boot দিয়ে তৈরি। ডেটাবেস হিসেবে PostgreSQL ব্যবহার করা হয়েছে। Flyway দিয়ে ডেটাবেস মাইগ্রেশন পরিচালনা করা হয়।'}">এই প্রকল্পটি Java ও Spring Boot দিয়ে তৈরি। ডেটাবেস হিসেবে PostgreSQL ব্যবহার করা হয়েছে। Flyway দিয়ে ডেটাবেস মাইগ্রেশন পরিচালনা করা হয়।</p>
+      <div class="tech-tags" aria-label="প্রযুক্তি তালিকা" th:attr="aria-label=${english ? 'Technology list' : 'প্রযুক্তি তালিকা'}">
+        <span class="tech-tag">Java 21</span>
+        <span class="tech-tag">Spring Boot 3</span>
+        <span class="tech-tag">PostgreSQL</span>
+        <span class="tech-tag">Thymeleaf</span>
+        <span class="tech-tag">Flyway</span>
+        <span class="tech-tag">Spring Security</span>
+      </div>
+    </section>
+
+    <a class="back-link" th:href="@{/services}"><span aria-hidden="true">←</span> <span th:text="${english ? 'Back to services' : 'সেবাসমূহে যান'}">সেবাসমূহে যান</span></a>
+  </div>
+</main>
+<footer th:replace="~{fragments :: siteFooter}"></footer>
+</body>
+</html>
