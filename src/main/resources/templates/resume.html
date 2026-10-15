@@ -27,13 +27,12 @@
         <p class="field-help" th:text="${english} ? 'The code is hidden as you type. Enter it carefully.' : 'কোড লুকানো থাকে। সাবধানে টাইপ করুন।'">কোড লুকানো থাকে। সাবধানে টাইপ করুন।</p>
       </div>
       <p class="form-error" role="alert" th:if="${formError}" th:text="${formError}"></p>
-      <button class="button button-primary" type="submit"><span th:text="${english} ? 'Add older draft' : 'পুরোনো খসড়া যোগ করুন'">পুরোনো খসড়া যোগ করুন</span> <span aria-hidden="true">→</span></button>
+      <button class="button button-primary" type="submit"><span th:text="${english} ? 'Add older draft' : 'পুরোনো খসড়া যোগ করুন'">পুরোনো খসড়া যোগ করুন</span></button>
     </form>
     <div class="privacy-note">
-      <span aria-hidden="true">🔒</span>
       <p th:text="${english} ? 'The reference and code are sent only through this form, not placed in the web address. Do not add someone else’s draft.' : 'রেফারেন্স ও কোড শুধু এই ফর্মে পাঠানো হয়; ওয়েব ঠিকানায় রাখা হয় না। অন্য কারও খসড়া যোগ করবেন না।'">রেফারেন্স ও কোড শুধু এই ফর্মে পাঠানো হয়; ওয়েব ঠিকানায় রাখা হয় না। অন্য কারও খসড়া যোগ করবেন না।</p>
     </div>
-    <a class="back-link" th:href="@{/my/drafts}"><span aria-hidden="true">←</span> <span th:text="${english} ? 'Back to my drafts' : 'আমার খসড়ায় ফিরুন'">আমার খসড়ায় ফিরুন</span></a>
+    <a class="back-link" th:href="@{/my/drafts}"><span th:text="${english} ? 'Back to my drafts' : 'আমার খসড়ায় ফিরুন'">আমার খসড়ায় ফিরুন</span></a>
   </div>
 </main>
 <footer th:replace="~{fragments :: siteFooter}"></footer>

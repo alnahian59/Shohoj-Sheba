@@ -3,40 +3,84 @@
 <head th:replace="~{fragments :: head('Sign in', 'লগ ইন')}"></head>
 <body>
 <header th:replace="~{fragments :: siteHeader}"></header>
+
 <main id="main" class="page-main auth-main">
   <div class="container auth-grid">
+    <!-- Left Column: Inspired Civic Editorial Panel -->
     <div class="auth-intro">
-      <span class="section-kicker" th:text="${english ? 'WELCOME BACK' : 'WELCOME BACK / আবার শুরু করুন'}">WELCOME BACK / আবার শুরু করুন</span>
-      <h1 th:if="${english}">Understand services.<br>Keep your work together.</h1>
-      <h1 th:unless="${english}">সেবার পথ সহজ।<br>আপনার কাজ নিজের।</h1>
-      <p th:text="${english ? 'Find service information, chat with the assistant, and manage your drafts in one place.' : 'সেবার তথ্য, সহকারীর সঙ্গে চ্যাট আর আপনার খসড়া—সব এক জায়গায় গুছিয়ে রাখুন।'}">সেবার তথ্য, সহকারীর সঙ্গে চ্যাট আর আপনার খসড়া—সব এক জায়গায় গুছিয়ে রাখুন।</p>
+      <span class="section-kicker" th:text="${english ? 'CIVIC SERVICE COMPANION' : 'নাগরিক সেবা উদ্যোগ • CITIZEN COMPANION'}">নাগরিক সেবা উদ্যোগ • CITIZEN COMPANION</span>
+      <h1 th:if="${english}">Clear pathways.<br>Prepared with confidence.</h1>
+      <h1 th:unless="${english}">সরকারি সেবা হোক<br>স্বচ্ছ ও সহজ।</h1>
+      <p th:text="${english ? 'Passport, National ID, Birth Registration or Land Mutation—understand official requirements, verify document checklists, and prepare your application privately.' : 'পাসপোর্ট, জাতীয় পরিচয়পত্র, জন্ম নিবন্ধন কিংবা ভূমির নামজারি—প্রয়োজনীয় কাগজপত্র ও নিয়ম জেনে ঘরে বসেই গুছিয়ে নিন নিজের প্রস্তুতি।'}">পাসপোর্ট, জাতীয় পরিচয়পত্র, জন্ম নিবন্ধন কিংবা ভূমির নামজারি—প্রয়োজনীয় কাগজপত্র ও নিয়ম জেনে ঘরে বসেই গুছিয়ে নিন নিজের প্রস্তুতি।</p>
+      
+      <!-- Three Inspired Civic Pillars -->
+      <div class="civic-pillars" aria-label="মূল নাগরিক সুবিধাসমূহ">
+        <div class="civic-pillar">
+          <span class="pillar-num">01</span>
+          <div>
+            <strong th:text="${english ? 'Verified Document Checklists' : 'নির্ভুল চেকলিস্ট ও কাগজপত্র'}">নির্ভুল চেকলিস্ট ও কাগজপত্র</strong>
+            <p th:text="${english ? 'Clear requirements gathered from official sources to prevent procedural rejection.' : 'অফিসিয়াল নিয়ম মেনে প্রতিটি সেবার প্রয়োজনীয় নথির তালিকা।'}">অফিসিয়াল নিয়ম মেনে প্রতিটি সেবার প্রয়োজনীয় নথির তালিকা।</p>
+          </div>
+        </div>
+        <div class="civic-pillar">
+          <span class="pillar-num">02</span>
+          <div>
+            <strong th:text="${english ? 'Private Draft Preparation' : 'ব্যক্তিগত সুরক্ষিত খসড়া'}">ব্যক্তিগত সুরক্ষিত খসড়া</strong>
+            <p th:text="${english ? 'Organize questions and draft notes securely under your personal account.' : 'সাইন ইন করে আপনার প্রয়োজনীয় প্রশ্ন ও খসড়া নিজের নিয়ন্ত্রণে সংরক্ষণ করুন।'}">সাইন ইন করে আপনার প্রয়োজনীয় প্রশ্ন ও খসড়া নিজের নিয়ন্ত্রণে সংরক্ষণ করুন।</p>
+          </div>
+        </div>
+        <div class="civic-pillar">
+          <span class="pillar-num">03</span>
+          <div>
+            <strong th:text="${english ? 'Bilingual Guidance Assistant' : 'সহজ তথ্য সহায়তা'}">সহজ তথ্য সহায়তা</strong>
+            <p th:text="${english ? 'Ask questions in your own language to instantly uncover relevant service pathways.' : 'নিজের ভাষায় বাংলায় প্রশ্ন করে তাৎক্ষণিক সঠিক নির্দেশিকা খুঁজে নিন।'}">নিজের ভাষায় বাংলায় প্রশ্ন করে তাৎক্ষণিক সঠিক নির্দেশিকা খুঁজে নিন।</p>
+          </div>
+        </div>
+      </div>
+
       <div class="auth-intro-bottom">
-        <p th:text="${english ? 'Drafts saved in your account are private. Government applications cannot be submitted here.' : 'অ্যাকাউন্টে রাখা খসড়া শুধু আপনার। সরকারি আবেদন এখান থেকে পাঠানো হয় না।'}">অ্যাকাউন্টে রাখা খসড়া শুধু আপনার। সরকারি আবেদন এখান থেকে পাঠানো হয় না।</p>
-        <a class="text-link" th:href="@{/services}"><span th:text="${english ? 'Browse services as a guest' : 'অতিথি হিসেবে সেবা দেখুন'}">অতিথি হিসেবে সেবা দেখুন</span> <span aria-hidden="true">↗</span></a>
+        <p th:text="${english ? 'Independent civic initiative. Official submissions and approvals take place on government portals.' : 'স্বতন্ত্র নাগরিক তথ্য উদ্যোগ। সরকারি আবেদন ও অনুমোদন সংশ্লিষ্ট সরকারি দপ্তরেই সম্পন্ন করতে হয়।'}">স্বতন্ত্র নাগরিক তথ্য উদ্যোগ। সরকারি আবেদন ও অনুমোদন সংশ্লিষ্ট সরকারি দপ্তরেই সম্পন্ন করতে হয়।</p>
+        <a class="text-link" th:href="@{/services}">
+          <span th:text="${english ? 'Browse services as a guest' : 'অতিথি হিসেবে সেবা দেখুন'}">অতিথি হিসেবে সেবা দেখুন</span>
+        </a>
       </div>
     </div>
+
+    <!-- Right Column: Refined Authentication Portal -->
     <section class="panel auth-card" aria-labelledby="login-heading">
-      <span class="auth-card-index" th:text="${english ? 'YOUR ACCOUNT' : 'YOUR ACCOUNT / আপনার অ্যাকাউন্ট'}">YOUR ACCOUNT / আপনার অ্যাকাউন্ট</span>
-      <h2 id="login-heading" th:text="${english ? 'Welcome back' : 'আবার স্বাগতম'}">আবার স্বাগতম</h2>
-      <p class="auth-card-lead"><span th:text="${english ? 'Sign in with your email and password to return to your drafts. New here? ' : 'নিজের খসড়ায় ফিরতে ইমেইল ও পাসওয়ার্ড দিয়ে লগ ইন করুন। নতুন হলে '}">নিজের খসড়ায় ফিরতে ইমেইল ও পাসওয়ার্ড দিয়ে লগ ইন করুন। নতুন হলে </span><a th:href="@{/register}" th:text="${english ? 'Create an account' : 'অ্যাকাউন্ট খুলুন'}">অ্যাকাউন্ট খুলুন</a><span th:text="${english ? '.' : '।'}">।</span></p>
+      <span class="auth-card-index" th:text="${english ? 'ACCOUNT ACCESS' : 'অ্যাকাউন্টে প্রবেশ • ACCOUNT ACCESS'}">অ্যাকাউন্টে প্রবেশ • ACCOUNT ACCESS</span>
+      <h2 id="login-heading" th:text="${english ? 'Welcome back' : 'লগ ইন করুন'}">লগ ইন করুন</h2>
+      <p class="auth-card-lead">
+        <span th:text="${english ? 'Sign in with your email and password to return to your drafts. New here? ' : 'সংরক্ষিত খসড়ায় ফিরতে ইমেইল ও পাসওয়ার্ড দিয়ে প্রবেশ করুন। নতুন নাগরিক? '}">সংরক্ষিত খসড়ায় ফিরতে ইমেইল ও পাসওয়ার্ড দিয়ে প্রবেশ করুন। নতুন নাগরিক? </span>
+        <a th:href="@{/register}" th:text="${english ? 'Create an account' : 'অ্যাকাউন্ট খুলুন'}">অ্যাকাউন্ট খুলুন</a><span th:text="${english ? '.' : '।'}">।</span>
+      </p>
+
       <p class="success-message" role="status" th:if="${param.registered != null}" th:text="${english ? 'Account created. Please sign in.' : 'অ্যাকাউন্ট তৈরি হয়েছে। এবার লগ ইন করুন।'}">অ্যাকাউন্ট তৈরি হয়েছে। এবার লগ ইন করুন।</p>
-      <p class="form-error" role="alert" th:if="${param.error != null}" th:text="${english ? 'Email or password did not match. Please try again.' : 'ইমেইল বা পাসওয়ার্ড মেলেনি। আবার চেষ্টা করুন।'}">ইমেইল বা পাসওয়ার্ড মেলেনি। আবার চেষ্টা করুন।</p>
+      <p class="form-error" role="alert" th:if="${param.error != null}" th:text="${english ? 'Email or password did not match. Please try again.' : 'ইমেইল বা পাসওয়ার্ড মেলেনি। অনুগ্রহ করে আবার চেষ্টা করুন।'}">ইমেইল বা পাসওয়ার্ড মেলেনি। অনুগ্রহ করে আবার চেষ্টা করুন।</p>
+
       <form method="post" th:action="@{/login}">
         <input th:if="${_csrf != null}" type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
         <div class="form-field">
-          <label for="login-email" th:text="${english ? 'Email' : 'ইমেইল'}">ইমেইল</label>
+          <label for="login-email" th:text="${english ? 'Email address' : 'ইমেইল ঠিকানা'}">ইমেইল ঠিকানা</label>
           <input id="login-email" type="email" name="email" autocomplete="username" inputmode="email" maxlength="254" required placeholder="name@example.com">
         </div>
         <div class="form-field">
           <label for="login-password" th:text="${english ? 'Password' : 'পাসওয়ার্ড'}">পাসওয়ার্ড</label>
-          <input id="login-password" type="password" name="password" autocomplete="current-password" required placeholder="আপনার পাসওয়ার্ড" th:placeholder="${english ? 'Your password' : 'আপনার পাসওয়ার্ড'}">
+          <input id="login-password" type="password" name="password" autocomplete="current-password" required placeholder="আপনার গোপন পাসওয়ার্ড" th:placeholder="${english ? 'Your password' : 'আপনার গোপন পাসওয়ার্ড'}">
         </div>
-        <button class="button button-primary full-width auth-submit" type="submit"><span th:text="${english ? 'Sign in' : 'লগ ইন করে এগিয়ে যান'}">লগ ইন করে এগিয়ে যান</span> <span aria-hidden="true">→</span></button>
+        <button class="button button-primary full-width auth-submit" type="submit">
+          <span th:text="${english ? 'Sign in to workspace' : 'লগ ইন করে প্রবেশ করুন'}">লগ ইন করে প্রবেশ করুন</span>
+        </button>
       </form>
-      <p class="auth-card-footer"><span th:text="${english ? 'Just browsing or chatting? ' : 'শুধু তথ্য বা চ্যাট ব্যবহার করবেন? '}">শুধু তথ্য বা চ্যাট ব্যবহার করবেন? </span><a th:href="@{/services}" th:text="${english ? 'Continue as a guest' : 'অতিথি হিসেবে চালিয়ে যান'}">অতিথি হিসেবে চালিয়ে যান</a></p>
+
+      <p class="auth-card-footer">
+        <span th:text="${english ? 'Looking for quick public guidance without an account? ' : 'অ্যাকাউন্ট ছাড়া শুধু তথ্য ও জরুরি হেল্পলাইন দেখবেন? '}">অ্যাকাউন্ট ছাড়া শুধু তথ্য ও জরুরি হেল্পলাইন দেখবেন? </span>
+        <a th:href="@{/services}" th:text="${english ? 'Explore as a guest' : 'অতিথি হিসেবে সেবা ব্রাউজ করুন'}">অতিথি হিসেবে সেবা ব্রাউজ করুন</a>
+      </p>
     </section>
   </div>
 </main>
+
 <footer th:replace="~{fragments :: siteFooter}"></footer>
 </body>
 </html>

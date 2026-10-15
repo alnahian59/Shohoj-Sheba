@@ -30,12 +30,11 @@
       </div>
       <p class="form-error" role="alert" th:if="${formError}" th:text="${formError}"></p>
       <div class="form-actions">
-        <button class="button button-primary" type="submit"><span th:text="${english} ? 'Create draft' : 'খসড়া তৈরি করুন'">খসড়া তৈরি করুন</span> <span aria-hidden="true">→</span></button>
+        <button class="button button-primary" type="submit"><span th:text="${english} ? 'Create draft' : 'খসড়া তৈরি করুন'">খসড়া তৈরি করুন</span></button>
         <a class="text-link" th:href="@{/services/{code}(code=${guide.code})}" th:text="${english} ? 'Back to the guide' : 'নির্দেশনায় ফিরুন'">নির্দেশনায় ফিরুন</a>
       </div>
     </form>
     <div class="privacy-note">
-      <span aria-hidden="true">🔒</span>
       <p th:text="${english} ? 'This draft is saved to your account. You can open it later from My drafts. It is not an official application.' : 'খসড়াটি আপনার অ্যাকাউন্টে সংরক্ষিত হবে। পরে “আমার খসড়া” থেকে খুলতে পারবেন। এটি সরকারি আবেদন নয়।'">খসড়াটি আপনার অ্যাকাউন্টে সংরক্ষিত হবে। পরে “আমার খসড়া” থেকে খুলতে পারবেন। এটি সরকারি আবেদন নয়।</p>
     </div>
   </div>

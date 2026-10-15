@@ -15,25 +15,21 @@
 
     <div class="about-grid">
       <section class="about-card" aria-labelledby="about-goal">
-        <div class="about-icon" aria-hidden="true">🎯</div>
         <h2 id="about-goal" th:text="${english ? 'Our goal' : 'লক্ষ্য'}">লক্ষ্য</h2>
         <p th:text="${english ? 'People often know what they need but are unsure where to go or which documents to bring. Shohoj Sheba helps make those steps easier to understand.' : 'অনেক নাগরিক জানেন তাঁদের কী দরকার, কিন্তু কোথায় যেতে হবে বা কোন নথি লাগবে — তা বোঝেন না। সহজ সেবা সেই বোঝার পথটুকু সহজ করতে চায়।'}">অনেক নাগরিক জানেন তাঁদের কী দরকার, কিন্তু কোথায় যেতে হবে বা কোন নথি লাগবে — তা বোঝেন না। সহজ সেবা সেই বোঝার পথটুকু সহজ করতে চায়।</p>
       </section>
 
       <section class="about-card" aria-labelledby="about-works">
-        <div class="about-icon" aria-hidden="true">⚙️</div>
         <h2 id="about-works" th:text="${english ? 'How it works' : 'যেভাবে কাজ করে'}">যেভাবে কাজ করে</h2>
         <p th:text="${english ? 'As a guest, describe what you need in chat, read the assistant reply, and explore sample guides. Sign in to save a draft.' : 'অতিথি হিসেবে চ্যাটে আপনার প্রয়োজন লিখতে, সহকারীর উত্তর দেখতে এবং নমুনা নির্দেশনা পড়তে পারবেন। খসড়া সংরক্ষণ করতে লগ ইন করতে হবে।'}">অতিথি হিসেবে চ্যাটে আপনার প্রয়োজন লিখতে, সহকারীর উত্তর দেখতে এবং নমুনা নির্দেশনা পড়তে পারবেন। খসড়া সংরক্ষণ করতে লগ ইন করতে হবে।</p>
       </section>
 
       <section class="about-card" aria-labelledby="about-limit">
-        <div class="about-icon" aria-hidden="true">⚠️</div>
         <h2 id="about-limit" th:text="${english ? 'Limitations' : 'সীমাবদ্ধতা'}">সীমাবদ্ধতা</h2>
         <p th:text="${english ? 'Guidance on this site is illustrative. Before applying, check current rules, fees, and deadlines on the relevant government website.' : 'এই সাইটের নির্দেশনা উদাহরণমূলক। আবেদন করার আগে সংশ্লিষ্ট সরকারি ওয়েবসাইটে বর্তমান নিয়ম, ফি ও সময়সীমা যাচাই করুন।'}">এই সাইটের নির্দেশনা উদাহরণমূলক। আবেদন করার আগে সংশ্লিষ্ট সরকারি ওয়েবসাইটে বর্তমান নিয়ম, ফি ও সময়সীমা যাচাই করুন।</p>
       </section>
 
       <section class="about-card" aria-labelledby="about-data">
-        <div class="about-icon" aria-hidden="true">🔒</div>
         <h2 id="about-data" th:text="${english ? 'Your information' : 'তথ্য সুরক্ষা'}">তথ্য সুরক্ষা</h2>
         <p th:text="${english ? 'Guest questions are not saved here. Drafts saved after signing in stay on this site’s server and are not sent to a government office.' : 'অতিথির প্রশ্ন এখানে সংরক্ষণ করা হয় না। অ্যাকাউন্টে সাইন ইন করে রাখা খসড়া এই সাইটের সার্ভারে থাকে; কোনো সরকারি দপ্তরে পাঠানো হয় না।'}">অতিথির প্রশ্ন এখানে সংরক্ষণ করা হয় না। অ্যাকাউন্টে সাইন ইন করে রাখা খসড়া এই সাইটের সার্ভারে থাকে; কোনো সরকারি দপ্তরে পাঠানো হয় না।</p>
       </section>
@@ -57,7 +53,7 @@
       </div>
     </section>
 
-    <a class="back-link" th:href="@{/services}"><span aria-hidden="true">←</span> <span th:text="${english ? 'Back to services' : 'সেবাসমূহে যান'}">সেবাসমূহে যান</span></a>
+    <a class="back-link" th:href="@{/services}"><span th:text="${english ? 'Back to services' : 'সেবাসমূহে যান'}">সেবাসমূহে যান</span></a>
   </div>
 </main>
 <footer th:replace="~{fragments :: siteFooter}"></footer>

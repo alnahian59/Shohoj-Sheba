@@ -3,32 +3,69 @@
 <head th:replace="~{fragments :: head('Create account', 'অ্যাকাউন্ট খুলুন')}"></head>
 <body>
 <header th:replace="~{fragments :: siteHeader}"></header>
+
 <main id="main" class="page-main auth-main">
   <div class="container auth-grid">
+    <!-- Left Column: Inspired Civic Editorial Panel -->
     <div class="auth-intro">
-      <span class="section-kicker" th:text="${english ? 'GET STARTED' : 'GET STARTED / শুরু করুন'}">GET STARTED / শুরু করুন</span>
-      <h1 th:if="${english}">Your work.<br>In your hands.</h1>
-      <h1 th:unless="${english}">আপনার কাজ,<br>আপনার নিয়ন্ত্রণে।</h1>
-      <p th:text="${english ? 'Create a Shohoj Sheba account to keep your questions and drafts together. Pick up where you left off.' : 'সহজ সেবায় অ্যাকাউন্ট খুলে নিজের প্রশ্ন ও খসড়া এক জায়গায় রাখুন। পরে যেখানে থেমেছিলেন, সেখান থেকে শুরু করুন।'}">সহজ সেবায় অ্যাকাউন্ট খুলে নিজের প্রশ্ন ও খসড়া এক জায়গায় রাখুন। পরে যেখানে থেমেছিলেন, সেখান থেকে শুরু করুন।</p>
+      <span class="section-kicker" th:text="${english ? 'CITIZEN WORKSPACE' : 'নাগরিক সেবা উদ্যোগ • CITIZEN WORKSPACE'}">নাগরিক সেবা উদ্যোগ • CITIZEN WORKSPACE</span>
+      <h1 th:if="${english}">Your preparations.<br>Always in your control.</h1>
+      <h1 th:unless="${english}">আপনার প্রস্তুতি,<br>আপনার নিয়ন্ত্রণে।</h1>
+      <p th:text="${english ? 'Create a secure citizen account on Shohoj Sheba to organize your public service drafts, track document requirements, and prepare at your own pace.' : 'সহজ সেবায় নাগরিক অ্যাকাউন্ট তৈরি করে বিভিন্ন সরকারি সেবার প্রয়োজনীয় নথির প্রস্তুতি ও খসড়া এক জায়গায় গুছিয়ে রাখুন।'}">সহজ সেবায় নাগরিক অ্যাকাউন্ট তৈরি করে বিভিন্ন সরকারি সেবার প্রয়োজনীয় নথির প্রস্তুতি ও খসড়া এক জায়গায় গুছিয়ে রাখুন।</p>
+      
+      <!-- Three Inspired Civic Pillars -->
+      <div class="civic-pillars" aria-label="মূল সুবিধাসমূহ">
+        <div class="civic-pillar">
+          <span class="pillar-num">01</span>
+          <div>
+            <strong th:text="${english ? 'Save Your Service Questions' : 'নিজের প্রশ্ন ও খসড়া সংরক্ষণ'}">নিজের প্রশ্ন ও খসড়া সংরক্ষণ</strong>
+            <p th:text="${english ? 'Keep private notes for passport, NID, or land procedures.' : 'পাসপোর্ট, এনআইডি বা জমিজমার আবেদনের জন্য প্রয়োজনীয় প্রস্তুতি নিরাপদে লিখে রাখুন।'}">পাসপোর্ট, এনআইডি বা জমিজমার আবেদনের জন্য প্রয়োজনীয় প্রস্তুতি নিরাপদে লিখে রাখুন।</p>
+          </div>
+        </div>
+        <div class="civic-pillar">
+          <span class="pillar-num">02</span>
+          <div>
+            <strong th:text="${english ? 'Privacy-First Architecture' : 'সম্পূর্ণ গোপনীয় ও ব্যক্তিগত'}">সম্পূর্ণ গোপনীয় ও ব্যক্তিগত</strong>
+            <p th:text="${english ? 'Your drafts are never shared with government servers without your explicit consent.' : 'আপনার খসড়া শুধুমাত্র আপনার অ্যাকাউন্টে সংরক্ষিত থাকে। কোনো অপ্রয়োজনীয় তথ্য নেওয়া হয় না।'}">আপনার খসড়া শুধুমাত্র আপনার অ্যাকাউন্টে সংরক্ষিত থাকে। কোনো অপ্রয়োজনীয় তথ্য নেওয়া হয় না।</p>
+          </div>
+        </div>
+        <div class="civic-pillar">
+          <span class="pillar-num">03</span>
+          <div>
+            <strong th:text="${english ? 'Instant Step-by-Step Clarity' : 'স্পষ্ট নাগরিক নির্দেশনা'}">স্পষ্ট নাগরিক নির্দেশনা</strong>
+            <p th:text="${english ? 'Know exact procedures, required fees, and official links before visiting offices.' : 'সরকারি অফিসে যাওয়ার আগে প্রয়োজনীয় ফি, নথিপত্র ও অফিসিয়াল লিংক সম্পর্কে জেনে নিন।'}">সরকারি অফিসে যাওয়ার আগে প্রয়োজনীয় ফি, নথিপত্র ও অফিসিয়াল লিংক সম্পর্কে জেনে নিন।</p>
+          </div>
+        </div>
+      </div>
+
       <div class="auth-intro-bottom">
-        <p th:text="${english ? 'You can browse services and use chat as a guest. An account is needed to save drafts.' : 'অতিথি হিসেবেও সেবার তথ্য ও চ্যাট দেখা যায়। খসড়া সংরক্ষণ করতে অ্যাকাউন্ট দরকার।'}">অতিথি হিসেবেও সেবার তথ্য ও চ্যাট দেখা যায়। খসড়া সংরক্ষণ করতে অ্যাকাউন্ট দরকার।</p>
-        <a class="text-link" th:href="@{/services}"><span th:text="${english ? 'Browse services as a guest' : 'অতিথি হিসেবে সেবা দেখুন'}">অতিথি হিসেবে সেবা দেখুন</span> <span aria-hidden="true">↗</span></a>
+        <p th:text="${english ? 'Independent platform. An account is only needed to store private drafts.' : 'স্বতন্ত্র নাগরিক প্ল্যাটফর্ম। শুধুমাত্র ব্যক্তিগত খসড়া সংরক্ষণের জন্য অ্যাকাউন্ট প্রয়োজন।'}">স্বতন্ত্র নাগরিক প্ল্যাটফর্ম। শুধুমাত্র ব্যক্তিগত খসড়া সংরক্ষণের জন্য অ্যাকাউন্ট প্রয়োজন।</p>
+        <a class="text-link" th:href="@{/services}">
+          <span th:text="${english ? 'Browse services as a guest' : 'অতিথি হিসেবে সেবা ব্রাউজ করুন'}">অতিথি হিসেবে সেবা ব্রাউজ করুন</span>
+        </a>
       </div>
     </div>
+
+    <!-- Right Column: Refined Registration Card -->
     <section class="panel auth-card" aria-labelledby="register-heading">
-      <span class="auth-card-index" th:text="${english ? 'JOIN SHOHOJ SHEBA' : 'JOIN SHOHOJ SHEBA / সহজ সেবায় যোগ দিন'}">JOIN SHOHOJ SHEBA / সহজ সেবায় যোগ দিন</span>
-      <h2 id="register-heading" th:text="${english ? 'Create your account' : 'আপনার অ্যাকাউন্ট তৈরি করুন'}">আপনার অ্যাকাউন্ট তৈরি করুন</h2>
-      <p class="auth-card-lead"><span th:text="${english ? 'Already registered? ' : 'আগেই অ্যাকাউন্ট আছে? '}">আগেই অ্যাকাউন্ট আছে? </span><a th:href="@{/login}" th:text="${english ? 'Sign in' : 'লগ ইন করুন'}">লগ ইন করুন</a><span th:text="${english ? '.' : '।'}">।</span></p>
+      <span class="auth-card-index" th:text="${english ? 'NEW CITIZEN REGISTRATION' : 'নতুন অ্যাকাউন্ট • REGISTRATION'}">নতুন অ্যাকাউন্ট • REGISTRATION</span>
+      <h2 id="register-heading" th:text="${english ? 'Create your account' : 'অ্যাকাউন্ট তৈরি করুন'}">অ্যাকাউন্ট তৈরি করুন</h2>
+      <p class="auth-card-lead">
+        <span th:text="${english ? 'Already registered with Shohoj Sheba? ' : 'আগেই অ্যাকাউন্ট তৈরি করেছেন? '}">আগেই অ্যাকাউন্ট তৈরি করেছেন? </span>
+        <a th:href="@{/login}" th:text="${english ? 'Sign in' : 'লগ ইন করুন'}">লগ ইন করুন</a><span th:text="${english ? '.' : '।'}">।</span>
+      </p>
+
       <p class="form-error" role="alert" th:if="${formError}" th:text="${formError}"></p>
+
       <form method="post" th:action="@{/register}">
         <input th:if="${_csrf != null}" type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
         <div class="auth-field-grid">
           <div class="form-field">
             <label for="register-name" th:text="${english ? 'Full name' : 'আপনার নাম'}">আপনার নাম</label>
-            <input id="register-name" type="text" name="displayName" autocomplete="name" minlength="2" maxlength="100" required placeholder="যে নামে আপনাকে দেখাব" th:placeholder="${english ? 'The name to display' : 'যে নামে আপনাকে দেখাব'}" th:value="${displayName}">
+            <input id="register-name" type="text" name="displayName" autocomplete="name" minlength="2" maxlength="100" required placeholder="আপনার পুরো নাম" th:placeholder="${english ? 'Your full name' : 'আপনার পুরো নাম'}" th:value="${displayName}">
           </div>
           <div class="form-field">
-            <label for="register-email" th:text="${english ? 'Email' : 'ইমেইল'}">ইমেইল</label>
+            <label for="register-email" th:text="${english ? 'Email address' : 'ইমেইল ঠিকানা'}">ইমেইল ঠিকানা</label>
             <input id="register-email" type="email" name="email" autocomplete="email" inputmode="email" maxlength="254" required placeholder="name@example.com" th:value="${email}">
           </div>
           <div class="form-field">
@@ -36,17 +73,20 @@
             <input id="register-password" type="password" name="password" autocomplete="new-password" minlength="12" required aria-describedby="password-help" placeholder="কমপক্ষে ১২ অক্ষর" th:placeholder="${english ? 'At least 12 characters' : 'কমপক্ষে ১২ অক্ষর'}">
           </div>
           <div class="form-field">
-            <label for="register-confirm" th:text="${english ? 'Confirm password' : 'পাসওয়ার্ড আবার লিখুন'}">পাসওয়ার্ড আবার লিখুন</label>
-            <input id="register-confirm" type="password" name="confirmPassword" autocomplete="new-password" minlength="12" required placeholder="একই পাসওয়ার্ড" th:placeholder="${english ? 'Enter password again' : 'একই পাসওয়ার্ড'}">
+            <label for="register-confirm" th:text="${english ? 'Confirm password' : 'পাসওয়ার্ড নিশ্চিত করুন'}">পাসওয়ার্ড নিশ্চিত করুন</label>
+            <input id="register-confirm" type="password" name="confirmPassword" autocomplete="new-password" minlength="12" required placeholder="একই পাসওয়ার্ড পুনরায় লিখুন" th:placeholder="${english ? 'Re-enter password' : 'একই পাসওয়ার্ড পুনরায় লিখুন'}">
           </div>
         </div>
-        <p id="password-help" class="field-help" th:text="${english ? 'Use at least 12 characters. Do not share your password.' : 'কমপক্ষে ১২ অক্ষর ব্যবহার করুন। পাসওয়ার্ড অন্য কাউকে দেবেন না।'}">কমপক্ষে ১২ অক্ষর ব্যবহার করুন। পাসওয়ার্ড অন্য কাউকে দেবেন না।</p>
-        <button class="button button-primary full-width auth-submit" type="submit"><span th:text="${english ? 'Create account' : 'অ্যাকাউন্ট তৈরি করুন'}">অ্যাকাউন্ট তৈরি করুন</span> <span aria-hidden="true">→</span></button>
+        <p id="password-help" class="field-help" th:text="${english ? 'Use at least 12 characters for strong security.' : 'নিরাপত্তার জন্য কমপক্ষে ১২ অক্ষরের শক্তিশালী পাসওয়ার্ড দিন।'}">নিরাপত্তার জন্য কমপক্ষে ১২ অক্ষরের শক্তিশালী পাসওয়ার্ড দিন।</p>
+        <button class="button button-primary full-width auth-submit" type="submit">
+          <span th:text="${english ? 'Complete registration' : 'অ্যাকাউন্ট তৈরি সম্পন্ন করুন'}">অ্যাকাউন্ট তৈরি সম্পন্ন করুন</span>
+        </button>
       </form>
-      <p class="auth-card-footer" th:text="${english ? 'With an account, you can view and edit your own drafts.' : 'অ্যাকাউন্ট খুললে আপনি নিজের খসড়া দেখতে ও সম্পাদনা করতে পারবেন।'}">অ্যাকাউন্ট খুললে আপনি নিজের খসড়া দেখতে ও সম্পাদনা করতে পারবেন।</p>
+      <p class="auth-card-footer" th:text="${english ? 'By registering, your draft questions are securely retained under your private profile.' : 'অ্যাকাউন্ট খোলার মাধ্যমে আপনি নিজের সংরক্ষিত খসড়া যেকোনো সময় সম্পাদনা করতে পারবেন।'}">অ্যাকাউন্ট খোলার মাধ্যমে আপনি নিজের সংরক্ষিত খসড়া যেকোনো সময় সম্পাদনা করতে পারবেন।</p>
     </section>
   </div>
 </main>
+
 <footer th:replace="~{fragments :: siteFooter}"></footer>
 </body>
 </html>

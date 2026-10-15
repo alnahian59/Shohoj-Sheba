@@ -14,17 +14,17 @@
         <h1 id="hero-heading" th:unless="${english}">সেবার পথ বুঝুন।<br><span>নিজের কাজ গুছিয়ে নিন।</span></h1>
         <p class="hero-lead" th:text="${english ? 'Describe what you need in your own words. Our assistant will suggest matching sample service guides. You can browse without an account.' : 'কী করতে চান, নিজের ভাষায় লিখুন। আমাদের সহকারী মিল থাকা নমুনা সেবার পথ দেখাবে। সেবা দেখার জন্য অ্যাকাউন্ট লাগে না।'}">কী করতে চান, নিজের ভাষায় লিখুন। আমাদের সহকারী মিল থাকা নমুনা সেবার পথ দেখাবে। সেবা দেখার জন্য অ্যাকাউন্ট লাগে না।</p>
         <div class="hero-proof" aria-label="এই সাইটে যা করতে পারবেন" th:attr="aria-label=${english ? 'What you can do here' : 'এই সাইটে যা করতে পারবেন'}">
-          <span><i aria-hidden="true">✓</i> <span th:text="${english ? 'Ask in chat' : 'লিখে চ্যাটে প্রশ্ন'}">লিখে চ্যাটে প্রশ্ন</span></span>
-          <span><i aria-hidden="true">✓</i> <span th:text="${english ? 'Explore services' : 'সেবার ধারণা'}">সেবার ধারণা</span></span>
-          <span><i aria-hidden="true">✓</i> <span th:text="${english ? 'Save drafts in your account' : 'অ্যাকাউন্টে খসড়া'}">অ্যাকাউন্টে খসড়া</span></span>
+          <span><span th:text="${english ? 'Ask in chat' : 'লিখে চ্যাটে প্রশ্ন'}">লিখে চ্যাটে প্রশ্ন</span></span>
+          <span><span th:text="${english ? 'Explore services' : 'সেবার ধারণা'}">সেবার ধারণা</span></span>
+          <span><span th:text="${english ? 'Save drafts in your account' : 'অ্যাকাউন্টে খসড়া'}">অ্যাকাউন্টে খসড়া</span></span>
         </div>
         <div class="hero-account" th:if="${authenticated}">
           <p><span th:text="${english ? 'Welcome, ' : 'স্বাগতম, '}">স্বাগতম, </span><strong th:text="${currentUserName}">আপনি</strong><span th:text="${english ? '. Your drafts are saved in your account.' : '। আপনার খসড়াগুলো অ্যাকাউন্টে রাখা আছে।'}">। আপনার খসড়াগুলো অ্যাকাউন্টে রাখা আছে।</span></p>
-          <a th:href="@{/my/drafts}"><span th:text="${english ? 'View my drafts' : 'আমার খসড়া দেখুন'}">আমার খসড়া দেখুন</span> <span aria-hidden="true">↗</span></a>
+          <a th:href="@{/my/drafts}"><span th:text="${english ? 'View my drafts' : 'আমার খসড়া দেখুন'}">আমার খসড়া দেখুন</span></a>
         </div>
         <div class="hero-account" th:unless="${authenticated}">
           <p th:text="${english ? 'Use the assistant as a guest. Create an account to save your drafts.' : 'অতিথি হিসেবে সহকারী ব্যবহার করুন। নিজের খসড়া রাখতে অ্যাকাউন্ট খুলুন।'}">অতিথি হিসেবে সহকারী ব্যবহার করুন। নিজের খসড়া রাখতে অ্যাকাউন্ট খুলুন।</p>
-          <a th:href="@{/register}"><span th:text="${english ? 'Create a free account' : 'বিনামূল্যে অ্যাকাউন্ট খুলুন'}">বিনামূল্যে অ্যাকাউন্ট খুলুন</span> <span aria-hidden="true">↗</span></a>
+          <a th:href="@{/register}"><span th:text="${english ? 'Create a free account' : 'বিনামূল্যে অ্যাকাউন্ট খুলুন'}">বিনামূল্যে অ্যাকাউন্ট খুলুন</span></a>
         </div>
       </div>
     </div>
@@ -36,7 +36,7 @@
     <aside class="notice main-notice" aria-label="এই সংস্করণের সীমা" th:attr="aria-label=${english ? 'About this guide' : 'এই সংস্করণের সীমা'}">
       <span class="notice-symbol" aria-hidden="true">i</span>
       <p><strong th:text="${english ? 'Before you begin' : 'শুরু করার আগে জানুন'}">শুরু করার আগে জানুন</strong><br><span th:text="${english ? 'Guidance here is illustrative. Guest questions are not saved on this site. Saved drafts are not sent to government offices. Check current rules, fees, and deadlines with the relevant official source.' : 'এখানের নির্দেশনা উদাহরণমূলক। অতিথির প্রশ্ন এই সাইটে সংরক্ষণ করা হয় না। সাইন ইন করে রাখা খসড়াও কোনো সরকারি দপ্তরে পাঠানো হয় না। নিয়ম, ফি ও সময়সীমা সংশ্লিষ্ট সরকারি উৎসে যাচাই করুন।'}">এখানের নির্দেশনা উদাহরণমূলক। অতিথির প্রশ্ন এই সাইটে সংরক্ষণ করা হয় না। সাইন ইন করে রাখা খসড়াও কোনো সরকারি দপ্তরে পাঠানো হয় না। নিয়ম, ফি ও সময়সীমা সংশ্লিষ্ট সরকারি উৎসে যাচাই করুন।</span></p>
-      <a th:href="@{/services#how-it-works}"><span th:text="${english ? 'How it works' : 'পদ্ধতি দেখুন'}">পদ্ধতি দেখুন</span> <span aria-hidden="true">↗</span></a>
+      <a th:href="@{/services#how-it-works}"><span th:text="${english ? 'How it works' : 'পদ্ধতি দেখুন'}">পদ্ধতি দেখুন</span></a>
     </aside>
   </div>
 
@@ -54,14 +54,13 @@
         <article class="service-card" th:each="service, item : ${services}">
           <div class="service-card-top">
             <span class="service-number" aria-hidden="true" th:text="${english ? (item.count < 10 ? '0' + item.count : item.count) : (item.count < 10 ? '০' + item.count : item.count)}">০১</span>
-            <span class="service-arrow" aria-hidden="true">↗</span>
           </div>
           <div class="service-card-body">
             <p class="service-title-en" th:lang="${english ? 'bn' : 'en'}" th:text="${english ? service.titleBn : service.titleEn}">Service title</p>
             <h3 th:text="${english ? service.titleEn : service.titleBn}">সেবার নাম</h3>
             <p th:text="${english ? service.descriptionEn : service.descriptionBn}">সেবার সংক্ষিপ্ত বিবরণ</p>
           </div>
-          <a th:href="@{/services/{code}(code=${service.code})}"><span th:text="${english ? 'View guide' : 'নির্দেশনা দেখুন'}">নির্দেশনা দেখুন</span> <span aria-hidden="true">→</span></a>
+          <a th:href="@{/services/{code}(code=${service.code})}"><span th:text="${english ? 'View guide' : 'নির্দেশনা দেখুন'}">নির্দেশনা দেখুন</span></a>
         </article>
       </div>
     </div>
@@ -75,8 +74,8 @@
         <h2 id="steps-heading" th:if="${english}">Start with what<br>you need today.</h2>
         <h2 id="steps-heading" th:unless="${english}">এখন যা দরকার,<br>সেখান থেকেই শুরু।</h2>
         <p th:text="${english ? 'Ask the assistant and read service guides as a guest. Sign in to save your questions as drafts for later.' : 'অতিথি হিসেবে সহকারীকে প্রশ্ন করুন ও সেবা পড়ুন। নিজের প্রশ্ন পরে দেখতে চাইলে অ্যাকাউন্টে সাইন ইন করে খসড়া রাখুন।'}">অতিথি হিসেবে সহকারীকে প্রশ্ন করুন ও সেবা পড়ুন। নিজের প্রশ্ন পরে দেখতে চাইলে অ্যাকাউন্টে সাইন ইন করে খসড়া রাখুন।</p>
-        <a class="text-link" th:if="${authenticated}" th:href="@{/my/drafts}"><span th:text="${english ? 'Open my drafts' : 'আমার খসড়া খুলুন'}">আমার খসড়া খুলুন</span> <span aria-hidden="true">↗</span></a>
-        <a class="text-link" th:unless="${authenticated}" th:href="@{/register}"><span th:text="${english ? 'Create an account' : 'অ্যাকাউন্ট খুলুন'}">অ্যাকাউন্ট খুলুন</span> <span aria-hidden="true">↗</span></a>
+        <a class="text-link" th:if="${authenticated}" th:href="@{/my/drafts}"><span th:text="${english ? 'Open my drafts' : 'আমার খসড়া খুলুন'}">আমার খসড়া খুলুন</span></a>
+        <a class="text-link" th:unless="${authenticated}" th:href="@{/register}"><span th:text="${english ? 'Create an account' : 'অ্যাকাউন্ট খুলুন'}">অ্যাকাউন্ট খুলুন</span></a>
       </div>
       <ol class="steps-list">
         <li><span class="step-number" th:text="${english ? '1' : '১'}">১</span><div><h3 th:text="${english ? 'Ask a question' : 'লিখে জিজ্ঞাসা করুন'}">লিখে জিজ্ঞাসা করুন</h3><p th:text="${english ? 'Describe what you need in the chat.' : 'চ্যাটে নিজের ভাষায় প্রয়োজন লিখে পাঠান।'}">চ্যাটে নিজের ভাষায় প্রয়োজন লিখে পাঠান।</p></div></li>
@@ -88,7 +87,7 @@
 
   <!-- Resume banner -->
   <section class="container resume-banner" aria-labelledby="resume-banner-heading">
-    <div class="resume-banner-art" aria-hidden="true"><span>↗</span></div>
+    <div class="resume-banner-art" aria-hidden="true"></div>
     <div>
       <span class="section-kicker light" th:text="${english ? 'YOUR NEXT STEP' : 'YOUR NEXT STEP / পরের কাজ'}">YOUR NEXT STEP / পরের কাজ</span>
       <h2 id="resume-banner-heading" th:if="${authenticated}" th:text="${english ? 'Return to your drafts' : 'আপনার খসড়ায় ফিরে যান'}">আপনার খসড়ায় ফিরে যান</h2>
@@ -96,8 +95,8 @@
       <p th:if="${authenticated}" th:text="${english ? 'See all drafts saved in your account in one place.' : 'আপনার অ্যাকাউন্টে রাখা সব স্থানীয় খসড়া এক জায়গায় দেখুন।'}">আপনার অ্যাকাউন্টে রাখা সব স্থানীয় খসড়া এক জায়গায় দেখুন।</p>
       <p th:unless="${authenticated}" th:text="${english ? 'You can browse services and use the assistant as a guest. Create an account to save drafts.' : 'অতিথি হিসেবে সেবা দেখা ও সহকারী ব্যবহার করা যায়। খসড়া রাখতে একটি অ্যাকাউন্ট খুলুন।'}">অতিথি হিসেবে সেবা দেখা ও সহকারী ব্যবহার করা যায়। খসড়া রাখতে একটি অ্যাকাউন্ট খুলুন।</p>
     </div>
-    <a class="button button-light" th:if="${authenticated}" th:href="@{/my/drafts}"><span th:text="${english ? 'My drafts' : 'আমার খসড়া'}">আমার খসড়া</span> <span aria-hidden="true">→</span></a>
-    <a class="button button-light" th:unless="${authenticated}" th:href="@{/register}"><span th:text="${english ? 'Create an account' : 'অ্যাকাউন্ট খুলুন'}">অ্যাকাউন্ট খুলুন</span> <span aria-hidden="true">→</span></a>
+    <a class="button button-light" th:if="${authenticated}" th:href="@{/my/drafts}"><span th:text="${english ? 'My drafts' : 'আমার খসড়া'}">আমার খসড়া</span></a>
+    <a class="button button-light" th:unless="${authenticated}" th:href="@{/register}"><span th:text="${english ? 'Create an account' : 'অ্যাকাউন্ট খুলুন'}">অ্যাকাউন্ট খুলুন</span></a>
   </section>
 </main>
 <footer th:replace="~{fragments :: siteFooter}"></footer>

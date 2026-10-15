@@ -35,7 +35,7 @@
           <p class="helpline-en" th:lang="${english ? 'bn' : 'en'}" th:text="${english ? h.nameBn : h.nameEn}">Service name</p>
           <p class="helpline-desc" th:text="${english ? h.descriptionEn : h.descriptionBn}">বিবরণ</p>
           <div class="helpline-source-row">
-            <a th:if="${h.sourceUrl != null and !h.sourceUrl.isBlank()}" th:href="${h.sourceUrl}" target="_blank" rel="noopener noreferrer"><span th:text="${english ? 'Official source' : 'সরকারি উৎস'}">সরকারি উৎস</span> <span aria-hidden="true">↗</span></a>
+            <a th:if="${h.sourceUrl != null and !h.sourceUrl.isBlank()}" th:href="${h.sourceUrl}" target="_blank" rel="noopener noreferrer"><span th:text="${english ? 'Official source' : 'সরকারি উৎস'}">সরকারি উৎস</span></a>
             <span th:if="${h.reviewedOn != null}"><span th:text="${english ? 'Checked: ' : 'যাচাই: '}">যাচাই: </span><time th:datetime="${h.reviewedOn}" th:text="${h.reviewedOn}">2026-10-14</time></span>
           </div>
         </div>
@@ -45,7 +45,7 @@
       </article>
     </div>
     <p class="muted" th:if="${helplines == null or helplines.isEmpty()}" th:text="${english ? 'No helpline information is available right now.' : 'এই মুহূর্তে কোনো হেল্পলাইন তথ্য উপলব্ধ নেই।'}">এই মুহূর্তে কোনো হেল্পলাইন তথ্য উপলব্ধ নেই।</p>
-    <a class="back-link" th:href="@{/services}"><span aria-hidden="true">←</span> <span th:text="${english ? 'Back to services' : 'সেবাসমূহে যান'}">সেবাসমূহে যান</span></a>
+    <a class="back-link" th:href="@{/services}"><span th:text="${english ? 'Back to services' : 'সেবাসমূহে যান'}">সেবাসমূহে যান</span></a>
   </div>
 </main>
 <footer th:replace="~{fragments :: siteFooter}"></footer>

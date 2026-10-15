@@ -5,7 +5,6 @@
 <header th:replace="~{fragments :: siteHeader}"></header>
 <main id="main" class="page-main">
   <div class="container form-layout">
-    <div class="success-emblem" aria-hidden="true">✓</div>
     <div class="page-heading centered">
       <span class="section-kicker"><span lang="en">LOCAL DRAFT SAVED</span><span th:unless="${english}"> / সংরক্ষিত</span></span>
       <h1 th:text="${english} ? 'Your local draft has been created' : 'আপনার স্থানীয় খসড়া তৈরি হয়েছে'">আপনার স্থানীয় খসড়া তৈরি হয়েছে</h1>
@@ -35,7 +34,7 @@
     </aside>
 
     <div class="page-actions">
-      <a class="button button-primary" th:href="@{/my/drafts}"><span th:text="${english} ? 'View my drafts' : 'আমার খসড়া দেখুন'">আমার খসড়া দেখুন</span> <span aria-hidden="true">→</span></a>
+      <a class="button button-primary" th:href="@{/my/drafts}"><span th:text="${english} ? 'View my drafts' : 'আমার খসড়া দেখুন'">আমার খসড়া দেখুন</span></a>
       <a class="text-link" th:href="@{/services}" th:text="${english} ? 'Go to services' : 'সেবাসমূহে যান'">সেবাসমূহে যান</a>
     </div>
   </div>

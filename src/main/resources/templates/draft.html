@@ -30,10 +30,10 @@
         <p id="draft-question-help" class="field-help" th:text="${english} ? 'Up to 500 characters. Do not enter identity numbers or document details.' : 'সর্বোচ্চ ৫০০ অক্ষর। ব্যক্তিগত পরিচয় নম্বর বা নথির তথ্য লিখবেন না।'">সর্বোচ্চ ৫০০ অক্ষর। ব্যক্তিগত পরিচয় নম্বর বা নথির তথ্য লিখবেন না।</p>
       </div>
       <p class="form-error" role="alert" th:if="${formError}" th:text="${formError}"></p>
-      <button class="button button-primary" type="submit"><span th:text="${english} ? 'Save changes' : 'পরিবর্তন সংরক্ষণ করুন'">পরিবর্তন সংরক্ষণ করুন</span> <span aria-hidden="true">→</span></button>
+      <button class="button button-primary" type="submit"><span th:text="${english} ? 'Save changes' : 'পরিবর্তন সংরক্ষণ করুন'">পরিবর্তন সংরক্ষণ করুন</span></button>
     </form>
     <p class="small-note under-form" th:text="${english} ? 'Sign out when you finish on a shared device. You can sign in later to reopen the draft.' : 'শেয়ার করা ডিভাইসে কাজ শেষে লগ আউট করুন। পরে আপনার অ্যাকাউন্টে লগ ইন করে খসড়াটি খুলতে পারবেন।'">শেয়ার করা ডিভাইসে কাজ শেষে লগ আউট করুন। পরে আপনার অ্যাকাউন্টে লগ ইন করে খসড়াটি খুলতে পারবেন।</p>
-    <a class="back-link" th:href="@{/my/drafts}"><span aria-hidden="true">←</span> <span th:text="${english} ? 'Back to my drafts' : 'আমার খসড়ায় ফিরুন'">আমার খসড়ায় ফিরুন</span></a>
+    <a class="back-link" th:href="@{/my/drafts}"><span th:text="${english} ? 'Back to my drafts' : 'আমার খসড়ায় ফিরুন'">আমার খসড়ায় ফিরুন</span></a>
   </div>
 </main>
 <footer th:replace="~{fragments :: siteFooter}"></footer>
